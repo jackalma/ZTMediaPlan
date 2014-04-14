@@ -22,22 +22,17 @@ namespace ZT.Permission.Logics
                 MHSeqNo snm = new MHSeqNo();
 
                 //获取编号
-                var ds = new MHSeqNoDao().SelectAllId(snm);
-
-                if (ds.Tables[0].Rows.Count > 0)
+                var listMS = new MHSeqNoDao().Select(snm);
+                
+                if (listMS.Count > 0)
                 {
-                    userId = ds.Tables[0].Rows[0]["UserId"].ToString().ToInteger();
+                    userId = listMS[0].UserId;
                     snm.UserId = ++userId;
                     snm.Last_Changed = DateTime.Now;
-                }
-                else
-                {
-                    snm.UserId = 1;
-                    snm.Last_Changed = DateTime.Now;
-                }
 
-                //更新编号
-                var result = new MHSeqNoDao().UpdateUserId(snm);
+                    //更新编号
+                    var result = new MHSeqNoDao().UpdateUserId(snm);
+                }                               
             }
 
             return userId;
@@ -56,22 +51,17 @@ namespace ZT.Permission.Logics
                 MHSeqNo snm = new MHSeqNo();
 
                 //获取编号
-                var ds = new MHSeqNoDao().SelectAllId(snm);
+                var listMS = new MHSeqNoDao().Select(snm);
 
-                if (ds.Tables[0].Rows.Count > 0)
+                if (listMS.Count > 0)
                 {
-                    roleId = ds.Tables[0].Rows[0]["RoleId"].ToString().ToInteger();
+                    roleId = listMS[0].RoleId;
                     snm.RoleId = ++roleId;
                     snm.Last_Changed = DateTime.Now;
-                }
-                else
-                {
-                    snm.RoleId = 1;
-                    snm.Last_Changed = DateTime.Now;
-                }
 
-                //更新编号
-                var result = new MHSeqNoDao().UpdateRoleId(snm);
+                    //更新编号
+                    var result = new MHSeqNoDao().UpdateRoleId(snm);
+                }                               
             }
 
             return roleId;
@@ -90,22 +80,17 @@ namespace ZT.Permission.Logics
                 MHSeqNo snm = new MHSeqNo();
 
                 //获取编号
-                var ds = new MHSeqNoDao().SelectAllId(snm);
+                var listMS = new MHSeqNoDao().Select(snm);
 
-                if (ds.Tables[0].Rows.Count > 0)
+                if (listMS.Count > 0)
                 {
-                    actionId = ds.Tables[0].Rows[0]["ActionId"].ToString().ToInteger();
+                    actionId = listMS[0].ActionId;
                     snm.ActionId = ++actionId;
                     snm.Last_Changed = DateTime.Now;
-                }
-                else
-                {
-                    snm.ActionId = 1;
-                    snm.Last_Changed = DateTime.Now;
-                }
 
-                //更新编号
-                var result = new MHSeqNoDao().UpdateActionId(snm);
+                    //更新编号
+                    var result = new MHSeqNoDao().UpdateActionId(snm);
+                }                                
             }
 
             return actionId;
