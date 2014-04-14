@@ -17,11 +17,13 @@ namespace ZT.Permission.Logics
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns></returns>
-        //public List<Membership> GetAllMembers(string where)
-        //{
-        //    MembershipDao md = new MembershipDao();
-
-        //}
+        public List<Membership> GetAllMembers(string where)
+        {
+            MembershipDao md = new MembershipDao();
+            Membership ms = new Membership();
+            
+            return md.Select(ms);            
+        }
 
         /// <summary>
         /// 创建登录用户（注册）
@@ -40,26 +42,26 @@ namespace ZT.Permission.Logics
         /// <param name="mailName"></param>
         /// <param name="vt">条件类别</param>
         /// <returns></returns>
-        public List<Membership> GetMemberByMailName(string mailName, ValidType vt)
+        public List<Membership> GetMemberByMailName(string checkName, ValidType vt)
         {
             MembershipDao md = new MembershipDao();
             Membership ms = new Membership();
-            if (string.IsNullOrEmpty(mailName))
+            if (string.IsNullOrEmpty(checkName))
                 return null;
 
             switch (vt)
             {
                 case ValidType.All:
-                    ms.Where = string.Format("LoweredLoginName = {0} OR LoweredEmail= {0}", mailName.ToLower());
+                    ms.Where = string.Format("LoweredLoginName = {0} OR LoweredEmail= {0}", checkName.ToLower());
                     break;
                 case ValidType.Mail:
-                    ms.Where = string.Format("LoweredEmail= {0}", mailName.ToLower());
+                    ms.Where = string.Format("LoweredEmail= {0}", checkName.ToLower());
                     break;
                 case ValidType.LoginName:
-                    ms.Where = string.Format("LoweredLoginName = {0}", mailName.ToLower());
+                    ms.Where = string.Format("LoweredLoginName = {0}", checkName.ToLower());
                     break;
                 default:
-                    ms.Where = string.Format("LoweredLoginName = {0} OR LoweredEmail= {0}", mailName.ToLower());
+                    ms.Where = string.Format("LoweredLoginName = {0} OR LoweredEmail= {0}", checkName.ToLower());
                     break;
             }
             
@@ -69,12 +71,12 @@ namespace ZT.Permission.Logics
         /// <summary>
         /// 登录名或邮箱是否重复
         /// </summary>
-        /// <param name="mailName"></param>
+        /// <param name="checkName"></param>
         /// <param name="vt">条件类别</param>
         /// <returns></returns>
-        public bool RepeatMailName(string mailName,ValidType vt)
+        public bool RepeatMailName(string checkName, ValidType vt)
         {
-            List<Membership> lms = GetMemberByMailName(mailName, vt);
+            List<Membership> lms = GetMemberByMailName(checkName, vt);
             if (lms.Count > 0)
             {
                 return true;
@@ -86,12 +88,12 @@ namespace ZT.Permission.Logics
         /// <summary>
         /// 登录判断
         /// </summary>
-        /// <param name="loginName"></param>
+        /// <param name="checkName"></param>
         /// <param name="passWord"></param>
         /// <returns></returns>
-        public bool Login(string loginName, string passWord)
+        public bool Login(string checkName, string passWord)
         {
-            List<Membership> lms = GetMemberByMailName(loginName, ValidType.All);
+            List<Membership> lms = GetMemberByMailName(checkName, ValidType.All);
             if (lms.Count > 0)
             {
                 Membership ms = lms[0];
