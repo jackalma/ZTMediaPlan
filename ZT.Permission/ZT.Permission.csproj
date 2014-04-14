@@ -50,6 +50,7 @@
     <Compile Include="Daos\RolesDao.cs" />
     <Compile Include="Daos\UPermisDao.cs" />
     <Compile Include="Daos\UsersDao.cs" />
+    <Compile Include="Enums\MemberEnum.cs" />
     <Compile Include="Enums\MHEnum.cs" />
     <Compile Include="Logics\ActionLogic.cs" />
     <Compile Include="Logics\MembershipLogic.cs" />
