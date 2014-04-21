@@ -131,5 +131,68 @@ namespace ZT.Permission.Models
             Last_Changed = DataConvert.GetDateTimeValue(row["Last_Changed"]);
         }
         #endregion
+
+        #region 方法
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public DbCommand UpdateUserId(Database db)
+        {
+            if (db == null) throw new ArgumentNullException("dataAccess");
+
+            string sql_update = "UPDATE mh_SeqNo SET UserId = @UserId, Last_Changed = @Last_Changed";
+
+            DbCommand dbCommand = db.GetSqlStringCommand(sql_update);
+            dbCommand.CommandType = CommandType.Text;
+            db.AddInParameter(dbCommand, "@UserId", DbType.Int32, UserId);
+            db.AddInParameter(dbCommand, "@Last_Changed", DbType.DateTime, Last_Changed);
+            dbCommand.Dispose();
+
+            return dbCommand;
+        }
+
+        /// <summary>
+        /// 角色编号
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public DbCommand UpdateRoleId(Database db)
+        {
+            if (db == null) throw new ArgumentNullException("dataAccess");
+
+            string sql_update = "UPDATE mh_SeqNo SET RoleId = @RoleId, Last_Changed = @Last_Changed";
+
+            DbCommand dbCommand = db.GetSqlStringCommand(sql_update);
+            dbCommand.CommandType = CommandType.Text;
+            db.AddInParameter(dbCommand, "@RoleId", DbType.Int32, RoleId);
+            db.AddInParameter(dbCommand, "@Last_Changed", DbType.DateTime, Last_Changed);
+            dbCommand.Dispose();
+
+            return dbCommand;
+        }
+
+        /// <summary>
+        /// 动作编号
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public DbCommand UpdateActionId(Database db)
+        {
+            if (db == null) throw new ArgumentNullException("dataAccess");
+
+            string sql_update = "UPDATE mh_SeqNo SET ActionId = @ActionId, Last_Changed = @Last_Changed";
+
+            DbCommand dbCommand = db.GetSqlStringCommand(sql_update);
+            dbCommand.CommandType = CommandType.Text;
+            db.AddInParameter(dbCommand, "@ActionId", DbType.Int32, ActionId);
+            db.AddInParameter(dbCommand, "@Last_Changed", DbType.DateTime, Last_Changed);
+            dbCommand.Dispose();
+
+            return dbCommand;
+        }
+        
+        #endregion
     }
 }

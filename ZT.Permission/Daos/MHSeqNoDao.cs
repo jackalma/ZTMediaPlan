@@ -11,6 +11,7 @@ namespace ZT.Permission.Daos
     [Serializable]
     public class MHSeqNoDao : EntityDao<MHSeqNo>
     {
+        #region 实现方法
         public override int Insert(MHSeqNo obj)
         {
             return base.Insert(obj);
@@ -35,6 +36,66 @@ namespace ZT.Permission.Daos
         {
             return base.Delete(obj);
         }
+        #endregion
 
+        /// <summary>
+        /// 更新用户编号
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <returns></returns>
+        public int UpdateUserId(MHSeqNo sn)
+        {
+            DbCommand updateCommand = sn.UpdateUserId(DataAccess.Db);
+
+            try
+            {
+                return DataAccess.Db.ExecuteNonQuery(updateCommand);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 更新角色编号
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <returns></returns>
+        public int UpdateRoleId(MHSeqNo sn)
+        {
+            DbCommand updateCommand = sn.UpdateRoleId(DataAccess.Db);
+
+            try
+            {
+                return DataAccess.Db.ExecuteNonQuery(updateCommand);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 更新动作编号
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <returns></returns>
+        public int UpdateActionId(MHSeqNo sn)
+        {
+            DbCommand updateCommand = sn.UpdateActionId(DataAccess.Db);
+
+            try
+            {
+                return DataAccess.Db.ExecuteNonQuery(updateCommand);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+        }
     }
 }

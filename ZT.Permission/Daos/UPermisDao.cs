@@ -63,9 +63,9 @@ namespace ZT.Permission.Daos
         /// </summary>
         /// <param name="ac"></param>
         /// <returns></returns>
-        public int DeleteRolesForUser(UPermis up)
+        public int OptRolesForUser(UPermis up)
         {
-            DbCommand addCommand = up.DeleteRolesForUser(DataAccess.Db);
+            DbCommand addCommand = up.OptRolesForUser(DataAccess.Db);
 
             try
             {
@@ -123,9 +123,9 @@ namespace ZT.Permission.Daos
         /// </summary>
         /// <param name="ac"></param>
         /// <returns></returns>
-        public int DeleteActionsForRole(UPermis up)
+        public int OptActionsForRole(UPermis up)
         {
-            DbCommand deleteCommand = up.DeleteActionsForRole(DataAccess.Db);
+            DbCommand deleteCommand = up.OptActionsForRole(DataAccess.Db);
 
             try
             {

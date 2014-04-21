@@ -81,7 +81,7 @@ namespace ZT.Permission.Models
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public DbCommand DeleteRolesForUser(Database db)
+        public DbCommand OptRolesForUser(Database db)
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
 
@@ -150,7 +150,7 @@ namespace ZT.Permission.Models
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public DbCommand DeleteActionsForRole(Database db)
+        public DbCommand OptActionsForRole(Database db)
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
 

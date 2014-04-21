@@ -3,6 +3,7 @@ using System.Data;
 using ZT.Permission.Models;
 using ZT.Permission.Daos;
 using ZT.Framework.Common;
+using ZT.Permission.Enums;
 
 namespace ZT.Permission.Logics
 {
@@ -18,16 +19,11 @@ namespace ZT.Permission.Logics
         /// <returns></returns>
         public List<Users> GetAllUser(string where)
         {
-            Users us = new Users();
-            us.Where = where;
+            UsersDao ud = new UsersDao();
+            Users user = new Users();
+            user.Where = where;
 
-            DataSet ds = new UsersDao().SelectAllUser(us);
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                return GetListUsers(ds);
-            }
-            return null;
+            return ud.Select(user);
         }
 
         /// <summary>
@@ -37,15 +33,13 @@ namespace ZT.Permission.Logics
         /// <returns></returns>
         public Users GetUserInfo(int userId)
         {
-            Users us = new Users();
-            us.UserId = userId;
+            string where = string.Format("UserId = {0}", userId);
 
-            DataSet ds = new UsersDao().SelectUserByUserId(us);
+            List<Users> listUsers = GetAllUser(where);
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                return GetListUsers(ds)[0];    
-            }
+            if (listUsers.Count > 0)
+                return listUsers[0];
+
             return null;
         }
 
@@ -56,43 +50,14 @@ namespace ZT.Permission.Logics
         /// <returns></returns>
         public List<Users> GetUserByUserName(string userName)
         {
-            Users us = new Users();
-            us.UserName = userName;
+            string where = string.Format("UserName like '%{0}%' OR EngName like '%{0}%'", userName);
 
-            DataSet ds = new UsersDao().SelectUserByUserName(us);
+            List<Users> listUsers = GetAllUser(where);
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                return GetListUsers(ds);
-            }
-            return null;
+            return listUsers;
         }
 
-        /// <summary>
-        /// 获取用户总积分
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public Users GetPoints(int userId)
-        {
-            Users us = new Users();
-            us.UserId = userId;
-
-            DataSet ds = new UsersDao().SelectUserPoints(us);
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                us.TotalPoints = ds.Tables[0].Rows[0]["TotalPoints"].ToString().ToInteger();
-                us.AvailablePoints = ds.Tables[0].Rows[0]["AvailablePoints"].ToString().ToInteger();
-            }
-            else
-            {
-                us.TotalPoints = 0;
-                us.AvailablePoints = 0;
-            }
-            return us;
-        }
-
+        
         /// <summary>
         /// 创建用户
         /// </summary>
@@ -100,10 +65,11 @@ namespace ZT.Permission.Logics
         /// <returns></returns>
         public bool CreateUser(Users us)
         {
-            if (new UsersDao().CreateUser(us) > 0)
+            UsersDao ud = new UsersDao();
+            if (ud.Insert(us) > 0)
                 return true;
-            else
-                return false;
+
+            return false;
         }
 
         /// <summary>
@@ -113,82 +79,27 @@ namespace ZT.Permission.Logics
         /// <returns></returns>
         public bool UpdateUser(Users us)
         {
-            if (new UsersDao().UpdateUser(us) > 0)
+            UsersDao ud = new UsersDao();
+            if (ud.Update(us) > 0)
                 return true;
-            else
-                return false;
+
+            return false;
         }
-
-        /// <summary>
-        /// 更新积分
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="totalPoints">总积分</param>
-        /// <param name="availablePoints">可用积分</param>
-        /// <returns></returns>
-        public bool UpdatePoints(int userId, int totalPoints, int availablePoints)
-        {
-            Users us = new Users();
-            us.UserId = userId;
-            us.TotalPoints = totalPoints;
-            us.AvailablePoints = availablePoints;
-
-            if (new UsersDao().UpdatePoints(us) > 0)
-                return true;
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// 更新头像地址
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="headUrl"></param>
-        /// <returns></returns>
-        public bool UpdateHeadUrl(int userId,string headUrl)
-        {
-            Users us = new Users();
-            us.UserId = userId;
-            us.HeadUrl = headUrl;
-
-            if (new UsersDao().UpdateHeadUrl(us) > 0)
-                return true;
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// 更新签名
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="signature"></param>
-        /// <returns></returns>
-        public bool UpdateSignature(int userId, string signature)
-        {
-            Users us = new Users();
-            us.UserId = userId;
-            us.Signature = signature;
-
-            if (new UsersDao().UpdateSignature(us) > 0)
-                return true;
-            else
-                return false;
-        }
-
+                      
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="us"></param>
         /// <returns></returns>
-        public bool DeleteUser(int userId)
+        public bool DeleteUser(Users us)
         {
-            Users us = new Users();
-            us.UserId = userId;
+            UsersDao ud = new UsersDao();
+            us.Status = (int)DataStatusEnum.Disabled;
 
-            if (new UsersDao().DeleteUser(us) > 0)
+            if (ud.Update(us) > 0)
                 return true;
-            else
-                return false;
+
+            return false;
         }
 
         #region 私有方法
@@ -216,8 +127,7 @@ namespace ZT.Permission.Logics
                 us.Province = dt.Rows[i]["Province"].ToString();
                 us.City = dt.Rows[i]["City"].ToString();
                 us.Address = dt.Rows[i]["Address"].ToString();
-                us.HomePage = dt.Rows[i]["HomePage"].ToString();
-                us.HeadUrl = dt.Rows[i]["HeadUrl"].ToString();
+                us.HomePage = dt.Rows[i]["HomePage"].ToString();                
                 us.TotalPoints = dt.Rows[i]["TotalPoints"].ToString().ToInteger();
                 us.AvailablePoints = dt.Rows[i]["AvailablePoints"].ToString().ToInteger();
                 us.Signature = dt.Rows[i]["Signature"].ToString();
