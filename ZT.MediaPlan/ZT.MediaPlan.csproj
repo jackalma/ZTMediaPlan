@@ -510,6 +510,7 @@
     <Content Include="Views\Roles\Index.aspx" />
     <Content Include="Views\System\Delete.aspx" />
     <Content Include="Views\Users\Index.aspx" />
+    <Content Include="Views\Users\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

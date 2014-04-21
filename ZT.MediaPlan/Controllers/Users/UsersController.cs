@@ -8,9 +8,14 @@ namespace ZT.MediaPlan.Controllers.Users
 {
     public class UsersController : Controller
     {
-        //
-        // GET: /Users/
+        public JsonResult List()
+        {
+            return null;
+        }
 
+        //
+        // GET: /Users/        
+        
         public ActionResult Index()
         {
             return View();
