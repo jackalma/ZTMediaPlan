@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\master.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\liger\images\loading.gif" />
     <Content Include="Scripts\liger\images\top.jpg" />
