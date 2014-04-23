@@ -74,7 +74,9 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\liger\images\loading.gif" />
     <Content Include="Scripts\liger\images\top.jpg" />
+    <Content Include="Scripts\liger\images\top2.jpg" />
     <Content Include="Scripts\liger\images\topicon.gif" />
+    <Content Include="Scripts\liger\indexdata.js" />
     <Content Include="Scripts\liger\jquery-validation\jquery.metadata.js" />
     <Content Include="Scripts\liger\jquery-validation\jquery.validate.min.js" />
     <Content Include="Scripts\liger\jquery-validation\messages_cn.js" />

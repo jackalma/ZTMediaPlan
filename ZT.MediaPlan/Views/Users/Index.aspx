@@ -4,6 +4,31 @@
     TitleIndex
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div position="left" title="主要菜单" id="accordion1">
+        <div title="功能列表" class="l-scroll">
+            <ul id="tree1" style="margin-top: 3px;">
+        </div>
+        <div title="应用场景">
+            <div style="height: 7px;">
+            </div>
+            <a class="l-link" href="javascript:f_addTab('listpage','列表页面','demos/case/listpage.htm')">
+                列表页面</a> <a class="l-link" href="#" target="_blank">模拟Window桌面</a>
+        </div>
+        <div title="实验室">
+            <div style="height: 7px;">
+            </div>
+            <a class="l-link" href="#" target="_blank">表格表单设计器</a>
+        </div>
+    </div>
+    <div position="center" id="framecenter">
+        <div tabid="home" title="我的主页" style="height: 300px">
+            <iframe frameborder="0" name="home" id="home" src=""></iframe>
+        </div>
+    </div>
+    
+    <link href="../../Content/master.css" type="text/css" rel="stylesheet" />
+    <script src="<%: Url.Content("http://www.zhi86.com/Scripts/jquery.validate.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("http://www.zhi86.com/Scripts/jquery.validate.unobtrusive.min.js") %>"></script>
     <script type="text/javascript">
         var tab = null;
         var accordion = null;
@@ -46,133 +71,4 @@
              
             
     </script>
-    <style type="text/css">
-        body, html
-        {
-            height: 100%;
-        }
-        body
-        {
-            padding: 0px;
-            margin: 0;
-            overflow: hidden;
-        }
-        .l-link
-        {
-            display: block;
-            height: 26px;
-            line-height: 26px;
-            padding-left: 10px;
-            text-decoration: underline;
-            color: #333;
-        }
-        .l-link2
-        {
-            text-decoration: underline;
-            color: white;
-            margin-left: 2px;
-            margin-right: 2px;
-        }
-        .l-layout-top
-        {
-            background: #102A49;
-            color: White;
-        }
-        .l-layout-bottom
-        {
-            background: #E5EDEF;
-            text-align: center;
-        }
-        #pageloading
-        {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            background: white url('loading.gif') no-repeat center;
-            width: 100%;
-            height: 100%;
-            z-index: 99999;
-        }
-        .l-link
-        {
-            display: block;
-            line-height: 22px;
-            height: 22px;
-            padding-left: 16px;
-            border: 1px solid white;
-            margin: 4px;
-        }
-        .l-link-over
-        {
-            background: #FFEEAC;
-            border: 1px solid #DB9F00;
-        }
-        .l-winbar
-        {
-            background: #2B5A76;
-            height: 30px;
-            position: absolute;
-            left: 0px;
-            bottom: 0px;
-            width: 100%;
-            z-index: 99999;
-        }
-        .space
-        {
-            color: #E7E7E7;
-        }
-        /* 顶部 */
-        .l-topmenu
-        {
-            margin: 0;
-            padding: 0;
-            height: 31px;
-            line-height: 31px;
-            background: url('../../Scripts/liger/images/top.jpg') repeat-x bottom;
-            position: relative;
-            border-top: 1px solid #1D438B;
-        }
-        .l-topmenu-logo
-        {
-            color: #E7E7E7;
-            padding-left: 35px;
-            line-height: 26px;
-            background: url('../../Scripts/liger/images/topicon.gif') no-repeat 10px 5px;
-        }
-        .l-topmenu-welcome
-        {
-            position: absolute;
-            height: 24px;
-            line-height: 24px;
-            right: 30px;
-            top: 2px;
-            color: #070A0C;
-        }
-        .l-topmenu-welcome a
-        {
-            color: #E7E7E7;
-            text-decoration: underline;
-        }
-    </style>
-    <div position="left" title="主要菜单" id="accordion1">
-        <div title="功能列表" class="l-scroll">
-            <ul id="tree1" style="margin-top: 3px;">
-        </div>
-        <div title="应用场景">
-            <div style="height: 7px;">
-            </div>
-            <a class="l-link" href="javascript:f_addTab('listpage','列表页面','demos/case/listpage.htm')">
-                列表页面</a> <a class="l-link" href="#" target="_blank">模拟Window桌面</a>
-        </div>
-        <div title="实验室">
-            <div style="height: 7px;">
-            </div>
-            <a class="l-link" href="#" target="_blank">表格表单设计器</a>
-        </div>
-    </div>
-    <div position="center" id="framecenter">
-        <div tabid="home" title="我的主页" style="height: 300px">
-            <iframe frameborder="0" name="home" id="home" src=""></iframe>
-        </div>
-    </div>
 </asp:Content>
