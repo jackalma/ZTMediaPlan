@@ -514,6 +514,7 @@
     <Content Include="Scripts\liger\syntaxhighlighter\scripts\shCore.js" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCore.css" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCoreDefault.css" />
+    <Content Include="Views\Actions\List.aspx" />
     <Content Include="Views\Roles\List.aspx" />
     <Content Include="Views\Shared\Navigation.ascx" />
     <Content Include="Views\System\EditPassword.aspx" />
