@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CacheHelper.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Actions\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -66,10 +68,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logics\GetXmlDocument.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\NavNodeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\xml\HeadNavigation.xml" />
     <Content Include="Content\master.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\liger\images\loading.gif" />
@@ -509,10 +514,10 @@
     <Content Include="Scripts\liger\syntaxhighlighter\scripts\shCore.js" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCore.css" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCoreDefault.css" />
-    <Content Include="Views\Action\Index.aspx" />
-    <Content Include="Views\Roles\Index.aspx" />
-    <Content Include="Views\System\Delete.aspx" />
-    <Content Include="Views\Users\Index.aspx" />
+    <Content Include="Views\Action\List.aspx" />
+    <Content Include="Views\Roles\List.aspx" />
+    <Content Include="Views\Shared\Navigation.ascx" />
+    <Content Include="Views\System\EditPassword.aspx" />
     <Content Include="Views\Users\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -565,9 +570,7 @@
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
