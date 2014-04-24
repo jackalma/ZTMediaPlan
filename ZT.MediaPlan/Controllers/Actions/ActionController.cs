@@ -11,6 +11,11 @@ namespace ZT.MediaPlan.Controllers.Actions
         //
         // GET: /Action/
 
+        public JsonResult List()
+        {
+            return null;
+        }
+
         public ActionResult Index()
         {
             return View();
