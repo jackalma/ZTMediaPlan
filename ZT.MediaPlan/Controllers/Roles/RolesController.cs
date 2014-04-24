@@ -11,6 +11,11 @@ namespace ZT.MediaPlan.Controllers.Roles
         //
         // GET: /Roles/
 
+        public JsonResult List()
+        {
+            return null;
+        }
+
         public ActionResult Index()
         {
             return View();
