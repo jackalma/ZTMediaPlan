@@ -60,6 +60,7 @@
     <Compile Include="Common\CacheHelper.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Actions\ActionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Roles\RolesController.cs" />
     <Compile Include="Controllers\System\SystemController.cs" />
