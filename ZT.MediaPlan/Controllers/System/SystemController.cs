@@ -101,5 +101,10 @@ namespace ZT.MediaPlan.Controllers.zSystem
                 return View();
             }
         }
+       
+        public ActionResult EditPassword()
+        {
+            return View();
+        }
     }
 }
