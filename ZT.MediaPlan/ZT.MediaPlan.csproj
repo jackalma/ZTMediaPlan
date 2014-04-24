@@ -60,7 +60,6 @@
     <Compile Include="Common\CacheHelper.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Actions\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Roles\RolesController.cs" />
     <Compile Include="Controllers\System\SystemController.cs" />
@@ -514,7 +513,6 @@
     <Content Include="Scripts\liger\syntaxhighlighter\scripts\shCore.js" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCore.css" />
     <Content Include="Scripts\liger\syntaxhighlighter\styles\shCoreDefault.css" />
-    <Content Include="Views\Action\List.aspx" />
     <Content Include="Views\Roles\List.aspx" />
     <Content Include="Views\Shared\Navigation.ascx" />
     <Content Include="Views\System\EditPassword.aspx" />
