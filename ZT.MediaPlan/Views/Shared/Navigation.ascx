@@ -1,58 +1,44 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<div title="功能列表" class="l-scroll">
-    <ul id="tree1" style="margin-top: 3px;">
-    </ul>
-</div>
-<div title="系统管理">
-    <div style="height: 7px;">
-    </div>
-    <a class="l-link" href="#" target="_blank">修改密码</a> <a class="l-link" href="#" target="_blank">
-        用户管理</a> <a class="l-link" href="#" target="_blank">角色管理</a> <a class="l-link" href="#"
-            target="_blank">动作管理</a>
-</div>
+<%@ Import Namespace="ZT.MediaPlan.Logics" %>
+<%@ Import Namespace="ZT.MediaPlan.Models" %>
+
+
+<%
+    IList<NavNodeInfo> listNodes = Navigation.GetUserNavNodes(34);
+    foreach (NavNodeInfo n in listNodes)
+    {
+        Response.Write(string.Format("<div title=\"{0}\">", n.Text));
+        Response.Write("<div style=\"height: 7px;\"></div>");
+        foreach (NavNodeInfo c in n.ChildNodes)
+        {
+            Response.Write(string.Format("<a class=\"l-link\" href=\"javascript:f_addTab('{0}','{1}','{2}')\">{1}</a>", c.TabId, c.Text, c.Src));
+        }
+        Response.Write("</div>");
+    }
+     %>
 
 <script type="text/javascript">
     var tab = null;
-    var accordion = null;
-    var tree = null;
+    var accordion = null;    
     var tabItems = [];
     $(function () {
         $(".l-link").hover(function () {
             $(this).addClass("l-link-over");
         }, function () {
             $(this).removeClass("l-link-over");
-        });
-        //树
-        $("#tree1").ligerTree({
-            data: indexdata,
-            checkbox: false,
-            slide: false,
-            nodeWidth: 120,
-            attribute: ['nodename', 'url'],
-            onSelect: function (node) {
-                if (!node.data.url) return;
-                var tabid = $(node.target).attr("tabid");
-                if (!tabid) {
-                    tabid = new Date().getTime();
-                    $(node.target).attr("tabid", tabid)
-                }
-                f_addTab(tabid, node.data.text, node.data.url);
-            }
-        });
-
-        tree = liger.get("tree1");
+        });               
     });
-  
+
     function f_addTab(tabid, text, url) {
         tab.addTabItem({
             tabid: tabid,
             text: text,
             url: url,
-            callback: function () {                
+            callback: function () {
                 addFrameSkinLink(tabid);
             }
         });
-    }  
+    }
     function addFrameSkinLink(tabid) {
         var prevHref = getLinkPrevHref(tabid) || "";
         var skin = getQueryString("skin");
@@ -92,4 +78,4 @@
             }
         }
     }
-    </script>
+</script>

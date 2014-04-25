@@ -22,6 +22,7 @@ namespace ZT.MediaPlan.Models
         private NavNodeInfo n_parentNode = null;
         private IList<NavNodeInfo> n_childNodes = null;
         private bool n_status = true;
+        private string n_tabId = string.Empty;
 
         /// <summary>
         /// 菜单名称
@@ -75,6 +76,15 @@ namespace ZT.MediaPlan.Models
         {
             get { return n_status; }
             set { n_status = value; }
+        }
+
+        /// <summary>
+        /// 菜单TabId
+        /// </summary>
+        public string TabId
+        {
+            get { return n_tabId; }
+            set { n_tabId = value; }
         }
 
     }

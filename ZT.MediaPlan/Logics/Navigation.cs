@@ -20,12 +20,27 @@ namespace ZT.MediaPlan.Logics
     {
 
         /// <summary>
+        /// 获取用户权限内的菜单
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        public static IList<NavNodeInfo> GetUserNavNodes(int UserId)
+        {
+            IList<NavNodeInfo> listNodes = GetAllNavNodes();
+
+            //去掉用户没有权限的菜单
+
+
+            return listNodes;
+        }
+
+        /// <summary>
         /// 获取所有可用的菜单
         /// </summary>
         /// <returns></returns>
-        public List<NavNodeInfo> GetAllNavNodes()
+        public static IList<NavNodeInfo> GetAllNavNodes()
         {
-            List<NavNodeInfo> listNodes = new List<NavNodeInfo>();
+            IList<NavNodeInfo> listNodes = new List<NavNodeInfo>();
             
             XmlDocument doc = Common.XmlHelper.DocNavigation();
 
@@ -40,6 +55,7 @@ namespace ZT.MediaPlan.Logics
                 nav.Text = n.Attributes["Text"].Value;
                 nav.Src = n.Attributes["Src"].Value;
                 nav.ActionName = n.Attributes["ActionName"].Value;
+                nav.TabId = n.Attributes["TabId"].Value;
 
                 //子菜单
                 IList<NavNodeInfo> cListNodes = new List<NavNodeInfo>();
@@ -52,6 +68,7 @@ namespace ZT.MediaPlan.Logics
                     cNav.Text = c.Attributes["Text"].Value;
                     cNav.Src = c.Attributes["Src"].Value;
                     cNav.ActionName = c.Attributes["ActionName"].Value;
+                    cNav.TabId = c.Attributes["TabId"].Value;
                     cNav.ParentNode = nav;
                     cListNodes.Add(cNav);
                 }

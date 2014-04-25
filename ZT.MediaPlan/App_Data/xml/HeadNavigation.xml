@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Navigation>
-  <Menu>
-    <Node></Node>
-    <Node></Node>
-    <Node></Node>
+  <Menu Text="销售" Src="" ActionName="" TabId="" Status="true">    
+    <Node Text="我的客户" Src="" ActionName="" TabId="" Status="true"></Node>
+    <Node Text="广告合同" Src="" ActionName="" TabId="" Status="true"></Node>
+    <Node Text="媒体销售明细表" Src="" ActionName="" TabId="" Status="true"></Node>
   </Menu>
-  <Menu>
-    <Node></Node>
-    <Node></Node>
-    <Node></Node>
+  <Menu Text="基础数据" Src="" ActionName="" TabId="" Status="true">
+    <Node Text="楼宇资源" Src="" ActionName="" TabId="" Status="true"></Node>
+    <Node Text="媒体资源" Src="" ActionName="" TabId="" Status="true"></Node>
+    <Node Text="媒体类别" Src="" ActionName="" TabId="" Status="true"></Node>
+    <Node Text="媒体形式" Src="" ActionName="" TabId="" Status="true"></Node>
   </Menu>
-  <Menu Text="系统管理" Src="System/EditPassword" ActionName="菜单_系统管理" Status="true">
-    <Node Text="修改密码" Src="System/EditPassword" ActionName="菜单_修改密码" Status="true"></Node>
-    <Node Text="用户管理" Src="Users/List" ActionName="菜单_用户管理" Status="true"></Node>
-    <Node Text="角色管理" Src="Roles/List" ActionName="菜单_角色管理" Status="true"></Node>
-    <Node Text="动作管理" Src="Actions/List" ActionName="菜单_动作管理" Status="true"></Node>
+  <Menu Text="系统管理" Src="System/EditPassword" ActionName="菜单_系统管理" TabId="sysmanage" Status="true">
+    <Node Text="修改密码" Src="System/EditPassword" ActionName="菜单_修改密码" TabId="editpwd" Status="true"></Node>
+    <Node Text="用户管理" Src="Users/List" ActionName="菜单_用户管理" TabId="ulist" Status="true"></Node>
+    <Node Text="角色管理" Src="Roles/List" ActionName="菜单_角色管理" TabId="rlist" Status="true"></Node>
+    <Node Text="动作管理" Src="Actions/List" ActionName="菜单_动作管理" TabId="alist" Status="true"></Node>
   </Menu>
 </Navigation>
