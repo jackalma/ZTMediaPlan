@@ -20,7 +20,7 @@ namespace ZT.MediaPlan.Models
         private string n_actionName = string.Empty;
         private string n_src = string.Empty;
         private NavNodeInfo n_parentNode = null;
-        private List<NavNodeInfo> n_childNodes = null;
+        private IList<NavNodeInfo> n_childNodes = null;
         private bool n_status = true;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ZT.MediaPlan.Models
         /// <summary>
         /// 子菜单
         /// </summary>
-        public List<NavNodeInfo> ChildNodes
+        public IList<NavNodeInfo> ChildNodes
         {
             get { return n_childNodes; }
             set { n_childNodes = value; }

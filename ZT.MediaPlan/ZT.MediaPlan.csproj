@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="Common\CacheHelper.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Common\GetXmlDocument.cs" />
+    <Compile Include="Common\XmlHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Actions\ActionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logics\Navigation.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\NavNodeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -573,7 +574,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logics\" />
+    <ProjectReference Include="..\ZT.Framework\ZT.Framework.csproj">
+      <Project>{D1135D5C-F2CC-448E-B7A4-89D616DA38C5}</Project>
+      <Name>ZT.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
