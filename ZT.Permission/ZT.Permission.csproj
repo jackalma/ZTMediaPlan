@@ -52,6 +52,7 @@
     <Compile Include="Daos\UsersDao.cs" />
     <Compile Include="Enums\MemberEnum.cs" />
     <Compile Include="Enums\MHEnum.cs" />
+    <Compile Include="Logics\AccountService.cs" />
     <Compile Include="Logics\ActionLogic.cs" />
     <Compile Include="Logics\MembershipLogic.cs" />
     <Compile Include="Logics\MHSeqNoLogic.cs" />
