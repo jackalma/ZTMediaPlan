@@ -11,10 +11,9 @@ namespace ZT.Permission
 
         static UserEngine()
         {
-            //Register(typeof(ILoginService), new ());
-            //Register(typeof(ILoginService), new ());
-            //Register(typeof(ILoginService), new ());  
-
+            Register(typeof(IUserService), new Service.UserService());
+            Register(typeof(IPermissionService), new Service.PermissionService());
+            Register(typeof(ILoginService), new Service.LoginService());
         }
 
         static void Register(Type t, object o)
