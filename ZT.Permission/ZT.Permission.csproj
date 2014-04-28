@@ -52,6 +52,9 @@
     <Compile Include="Daos\UsersDao.cs" />
     <Compile Include="Enums\MemberEnum.cs" />
     <Compile Include="Enums\MHEnum.cs" />
+    <Compile Include="ILoginService.cs" />
+    <Compile Include="IPermissionService.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="Logics\AccountService.cs" />
     <Compile Include="Logics\ActionLogic.cs" />
     <Compile Include="Logics\MembershipLogic.cs" />
@@ -66,6 +69,8 @@
     <Compile Include="Models\UPermis.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserContext.cs" />
+    <Compile Include="UserEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZT.Framework\ZT.Framework.csproj">
