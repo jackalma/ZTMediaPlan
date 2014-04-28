@@ -19,5 +19,10 @@ namespace ZT.MediaPlan.Controllers
         {
             return View();
         }
+
+        public ActionResult Workbench()
+        {
+            return View();
+        }
     }
 }
