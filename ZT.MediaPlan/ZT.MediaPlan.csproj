@@ -94,6 +94,8 @@
     </Content>
     <Content Include="Content\master.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\liger\DepartmentData.js" />
+    <Content Include="Scripts\liger\EmployeeData.js" />
     <Content Include="Scripts\liger\images\loading.gif" />
     <Content Include="Scripts\liger\images\top.jpg" />
     <Content Include="Scripts\liger\images\top2.jpg" />

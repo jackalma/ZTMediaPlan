@@ -13,21 +13,19 @@ namespace ZT.MediaPlan.Controllers.Customer
     {
         //
         // GET: /Customer/
-        public JsonResult List()
+        public ActionResult List()
         {
-            return Json(new
-            {
-                a = "这是客户管理"
+            return View();
+            //return Json(new
+            //{
+            //    a = "这是客户管理"
 
-            });
+            //}, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Create()
+        public ActionResult Create()
         {
-            return Json(new
-            {
-                a = "创建客户"
-            });
+            return View();
         }
 
 
