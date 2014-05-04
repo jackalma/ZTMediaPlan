@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Navigation>
+  <Menu Text="客户管理" Src="Customer/List" ActionName="菜单_客户管理" TabId="cusmanage" Status="true">
+    <Node Text="新增客户" Src="Customer/Create" ActionName="菜单_新增客户" TabId="cuscreate" Status="true"></Node>
+    <Node Text="客户管理" Src="Customer/List" ActionName="菜单_客户管理" TabId="cusmanage2" Status="true"></Node>
+  </Menu>
   <Menu Text="销售" Src="" ActionName="" TabId="" Status="true">    
     <Node Text="我的客户" Src="" ActionName="" TabId="" Status="true"></Node>
     <Node Text="广告合同" Src="" ActionName="" TabId="" Status="true"></Node>
