@@ -13,14 +13,14 @@ namespace ZT.MediaPlan.Controllers.Customer
     {
         //
         // GET: /Customer/
-        public ActionResult List()
+        public JsonResult List()
         {
-            return View();
-            //return Json(new
-            //{
-            //    a = "这是客户管理"
 
-            //}, JsonRequestBehavior.AllowGet);
+            var ss = new { firstname = "FI-SW-01", lastname = "Koi", phone = "18616396346", email = "12324@126.com" };
+             
+                     
+
+            return Json(ss,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()
