@@ -13,14 +13,41 @@ namespace ZT.MediaPlan.Controllers.Customer
     {
         //
         // GET: /Customer/
-        public JsonResult List()
+        public ActionResult List()
+        {           
+            return View();
+        }
+        public JsonResult CustomerList()
         {
+            List<AAA> page = new List<AAA>();
+            AAA aa = new AAA();
+            aa.firstname = "asdfasdf";
+            aa.lastname = "asdfasd";
+            aa.phone = "2131232131";
+            aa.email = "12312@126.com";
+            page.Add(aa);
 
-            var ss = new { firstname = "FI-SW-01", lastname = "Koi", phone = "18616396346", email = "12324@126.com" };
-             
-                     
+            AAA aa2 = new AAA();
+            aa2.firstname = "asdfasdf";
+            aa2.lastname = "asdfasd";
+            aa2.phone = "2131232131";
+            aa2.email = "12312@126.com";
+            page.Add(aa2);            
 
-            return Json(ss,JsonRequestBehavior.AllowGet);
+            var data = from u in page
+                       select new { u.firstname, u.lastname, u.phone, u.email };
+
+            var result = new { total = page.Count(), rows = data };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+            
+        }
+       
+        public class AAA {
+            public string firstname { get; set; }
+            public string lastname { get; set; }
+            public string phone { get; set; }
+            public string email { get; set; }
         }
 
         public ActionResult Create()

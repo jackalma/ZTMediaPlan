@@ -4,11 +4,11 @@
 <html>
 <head runat="server">
     <title>List</title>
-    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
-    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/demo/demo.css">
+    <script type="text/javascript" src="../../Scripts/easyui/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/easyui/jquery.easyui.min.js"></script>
     <style type="text/css">
         #fm
         {
@@ -34,74 +34,82 @@
         }
     </style>
 </head>
-<body>
-    <h2>
-        Basic CRUD Application</h2>
-    <p>
-        Click the buttons on datagrid toolbar to do crud actions.</p>
-    <table id="dg" title="My Users" class="easyui-datagrid" style="width: 700px; height: 250px"
-        url="Customer/List" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true"
+<body>  
+    <table id="dg" title="客户管理列表" class="easyui-datagrid" style="width: 700px; height: 250px"
+        url="/Customer/CustomerList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true"
         singleselect="true">
         <thead>
             <tr>
                 <th field="firstname" width="50">
-                    First Name
+                    客户名称
                 </th>
                 <th field="lastname" width="50">
-                    Last Name
+                    品牌
                 </th>
                 <th field="phone" width="50">
-                    Phone
+                    电话
                 </th>
                 <th field="email" width="50">
-                    Email
+                    地址
                 </th>
             </tr>
         </thead>
     </table>
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true"
-            onclick="newUser()">New User</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                iconcls="icon-edit" plain="true" onclick="editUser()">Edit User</a> <a href="javascript:void(0)"
+            onclick="newUser()">新增客户</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                iconcls="icon-edit" plain="true" onclick="editUser()">编辑客户</a> <a href="javascript:void(0)"
                     class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyUser()">
-                    Remove User</a>
+                    删除客户</a>
     </div>
     <div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px"
         closed="true" buttons="#dlg-buttons">
         <div class="ftitle">
-            User Information</div>
+            客户信息</div>
         <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>
-                First Name:</label>
+                客户名称:</label>
             <input name="firstname" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>
-                Last Name:</label>
+                品牌:</label>
             <input name="lastname" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>
-                Phone:</label>
+                电话:</label>
             <input name="phone">
         </div>
         <div class="fitem">
             <label>
-                Email:</label>
+                地址:</label>
             <input name="email" class="easyui-validatebox" validtype="email">
         </div>
         </form>
     </div>
     <div id="dlg-buttons">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveUser()">
-            Save</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"
-                onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+            保存</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"
+                onclick="javascript:$('#dlg').dialog('close')">取消</a>
     </div>
     <script type="text/javascript">
         var url;
+//        $(function () {
+//            $('#dg').datagrid({
+//                url: 'datagrid_data.json',
+//                columns: [[
+//                        { field: 'code', title: 'Code', width: 100 },
+//                        { field: 'name', title: 'Name', width: 100 },
+//                        { field: 'price', title: 'Price', width: 100, align: 'right' }
+//                            ]]
+//            });
+//        });
+
+
         function newUser() {
-            $('#dlg').dialog('open').dialog('setTitle', 'New User');
+            $('#dlg').dialog('open').dialog('setTitle', '新增客户');
             $('#fm').form('clear');
             url = 'save_user.php';
         }
