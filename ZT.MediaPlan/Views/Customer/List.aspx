@@ -34,34 +34,47 @@
         }
     </style>
 </head>
-<body>  
-    <table id="dg" title="客户管理列表" class="easyui-datagrid" style="width: 700px; height: 250px"
-        url="/Customer/CustomerList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true"
-        singleselect="true">
+<body>
+    <table id="dg" class="easyui-datagrid">
         <thead>
             <tr>
-                <th field="firstname" width="50">
-                    客户名称
+                <th field="CustomerNo" width="75">
+                    客户编号
                 </th>
-                <th field="lastname" width="50">
-                    品牌
+                <th field="CustomerName" width="175">
+                    客户简称
                 </th>
-                <th field="phone" width="50">
-                    电话
+                <th field="CustomerType" width="75">
+                    客户类别
                 </th>
-                <th field="email" width="50">
-                    地址
+                <th field="CreateTime" width="180">
+                    建档日期
+                </th>
+                <th field="ReceiptType" width="90">
+                    开票类型
+                </th>
+                <th field="Creator" width="100">
+                    经办人
+                </th>
+                <th field="BusinessLicNo" width="130">
+                    营业执照码
+                </th>
+                <th field="Bank" width="110">
+                    开户银行
+                </th>
+                <th field="Status" width="75">
+                    状态
                 </th>
             </tr>
         </thead>
     </table>
-    <div id="toolbar">
+    <%--   <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true"
             onclick="newUser()">新增客户</a> <a href="javascript:void(0)" class="easyui-linkbutton"
                 iconcls="icon-edit" plain="true" onclick="editUser()">编辑客户</a> <a href="javascript:void(0)"
                     class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyUser()">
                     删除客户</a>
-    </div>
+    </div>--%>
     <div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px"
         closed="true" buttons="#dlg-buttons">
         <div class="ftitle">
@@ -96,17 +109,69 @@
     </div>
     <script type="text/javascript">
         var url;
-//        $(function () {
-//            $('#dg').datagrid({
-//                url: 'datagrid_data.json',
-//                columns: [[
-//                        { field: 'code', title: 'Code', width: 100 },
-//                        { field: 'name', title: 'Name', width: 100 },
-//                        { field: 'price', title: 'Price', width: 100, align: 'right' }
-//                            ]]
-//            });
-//        });
 
+        $(function () {
+            $('#dg').datagrid({
+                title: '客户管理列表',
+                iconCls: 'icon-edit', //图标  
+                width: 700,
+                height: 'auto',
+                nowrap: false,
+                striped: true,
+                border: true,
+                collapsible: false, //是否可折叠的  
+                fit: true, //自动大小  
+                url: '/Customer/CustomerList',
+                //sortName: 'code',  
+                //sortOrder: 'desc',  
+                remoteSort: false,
+                idField: 'fldId',
+                singleSelect: false, //是否单选  
+                pagination: true, //分页控件  
+                rownumbers: false, //行号  
+                frozenColumns: [[
+            { field: 'ck', checkbox: true }
+        ]],
+                toolbar: [{
+                    text: '新增客户',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        newUser();
+                    }
+                }, '-', {
+                    text: '编辑客户',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        editUser();
+                    }
+                }, '-', {
+                    text: '删除客户',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+                        destroyUser();
+                    }
+                }]
+            });
+
+            //设置分页控件  
+            var p = $('#dg').datagrid("getPager");
+            $(p).pagination({
+                pageSize: 10, //每页显示的记录条数，默认为10  
+                pageList: [5, 10, 15], //可以设置每页记录条数的列表  
+                beforePageText: '第', //页数文本框前显示的汉字  
+                afterPageText: '页    共 {pages} 页',
+                displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+                /*onBeforeRefresh:function(){ 
+                $(this).pagination('loading'); 
+                alert('before refresh'); 
+                $(this).pagination('loaded'); 
+                }*/
+                onSelectPage: function () { alert(pageNumber + '/' + pageSize) },
+                onChangePageSize: function () { alert(pageSize) }
+            });
+        });
+
+       
 
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', '新增客户');
@@ -159,7 +224,7 @@
                     }
                 });
             }
-        }
+        }    
     </script>
 </body>
 </html>
