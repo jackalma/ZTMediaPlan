@@ -145,6 +145,7 @@
     <Content Include="Scripts\easyui\themes\icons\sum.png" />
     <Content Include="Scripts\easyui\themes\icons\tip.png" />
     <Content Include="Scripts\easyui\themes\icons\undo.png" />
+    <Content Include="Scripts\easyui\themes\ztsty.css" />
     <Content Include="Scripts\liger\images\loading.gif" />
     <Content Include="Scripts\liger\images\top.jpg" />
     <Content Include="Scripts\liger\images\top2.jpg" />

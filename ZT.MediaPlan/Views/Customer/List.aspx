@@ -4,16 +4,17 @@
 <html>
 <head runat="server">
     <title>List</title>
-    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/demo/demo.css" />
+    <link rel="Stylesheet" type="text/css" href="../../Scripts/easyui/themes/ztsty.css" />
     <script type="text/javascript" src="../../Scripts/easyui/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="../../Scripts/easyui/jquery.easyui.min.js"></script>
     <style type="text/css">
         #fm
         {
             margin: 0;
-            padding: 10px 30px;
+            padding: 10px 20px;
         }
         .ftitle
         {
@@ -25,19 +26,21 @@
         }
         .fitem
         {
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
         .fitem label
         {
             display: inline-block;
-            width: 80px;
-        }
+            width: 70px;            
+            text-align:right;
+            margin-left:15px;
+        }        
     </style>
 </head>
 <body>
-    <table id="dg" class="easyui-datagrid">
+    <table id="tbCus" class="easyui-datagrid">
         <thead>
-            <tr>
+            <tr>               
                 <th field="CustomerNo" width="75">
                     客户编号
                 </th>
@@ -65,41 +68,106 @@
                 <th field="Status" width="75">
                     状态
                 </th>
+                <th field="Actions" width="75">
+                    操作
+                </th>
             </tr>
         </thead>
     </table>
-    <%--   <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true"
-            onclick="newUser()">新增客户</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                iconcls="icon-edit" plain="true" onclick="editUser()">编辑客户</a> <a href="javascript:void(0)"
-                    class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyUser()">
-                    删除客户</a>
-    </div>--%>
-    <div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px"
+    
+    <!--新增、编辑框-->
+    <div id="dlg" class="easyui-dialog" style="width: 780px; height: 580px; padding: 10px 15px"
         closed="true" buttons="#dlg-buttons">
         <div class="ftitle">
-            客户信息</div>
-        <form id="fm" method="post" novalidate>
-        <div class="fitem">
-            <label>
-                客户名称:</label>
-            <input name="firstname" class="easyui-validatebox" required="true">
-        </div>
-        <div class="fitem">
-            <label>
-                品牌:</label>
-            <input name="lastname" class="easyui-validatebox" required="true">
-        </div>
-        <div class="fitem">
-            <label>
-                电话:</label>
-            <input name="phone">
-        </div>
-        <div class="fitem">
-            <label>
-                地址:</label>
-            <input name="email" class="easyui-validatebox" validtype="email">
-        </div>
+            客户基本信息</div>
+        <form id="fm" method="post" novalidate>           
+        <table cellpadding="5">
+            <tr>
+                <td style="text-align:right;">客户编号:</td>
+                <td  colspan="2"> <input name="firstname" class="easyui-validatebox input-w7" required="true" /></td>
+                <td style="text-align:right;">建档日期:</td>
+                <td  colspan="2"><input class="easyui-datebox textbox input-w7" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">客户全称:</td>
+                <td  colspan="2"><input name="lastname" class="easyui-validatebox input-w7" required="true" /></td>
+                <td style="text-align:right;">客户简称:</td>
+                <td  colspan="2"><input name="lastname" class="easyui-validatebox input-w7" required="true" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">客户类别:</td>
+                <td  colspan="2">
+                    <select class="easyui-combobox input-w7" name="language">
+                <option value="ar">类别1</option>
+                <option value="bg">类别2</option>
+                <option value="ca">类别3</option>
+                <option value="zh-cht">类别4</option>
+            </select>
+                </td>
+                <td style="text-align:right;">经办人员:</td>
+                <td  colspan="2"><input name="phone" class="input-w7" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">公司地址:</td>
+                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+                <td style="text-align:right;">电话:</td>
+                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">开户银行:</td>
+                <td  colspan="2"><select class="easyui-combobox input-w7" name="fapiao">
+                <option value="ar">中国银行</option>
+                <option value="bg">招商银行</option>
+                <option value="ca">中信银行</option>
+                <option value="zh-cht">建设银行</option>
+            </select></td>
+                <td style="text-align:right;">发票类型:</td>
+                <td  colspan="2">
+                     <select class="easyui-combobox input-w7" name="fapiao">
+                <option value="ar">类型1</option>
+                <option value="bg">类型2</option>
+                <option value="ca">类型3</option>
+                <option value="zh-cht">类型4</option>
+            </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"> 营业执照码:</td>
+                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email">    </td>
+                <td style="text-align:right;"> 帐号:</td>
+                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">电话:</td>
+                <td colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+                <td style="text-align:right;">地址:</td>
+                <td colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">开票全称:</td>
+                <td colspan="5"> <input name="email" class="easyui-validatebox input-w12" validtype="email"></td>                
+            </tr>
+            <tr>
+                <td style="text-align:right;">税务登记:</td>
+                <td colspan="5"><input name="email" class="easyui-validatebox input-w12" validtype="email"></td>                
+            </tr>
+            <tr>
+                <td style="text-align:right;"> 联系人1:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align:right;">职务:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align:right;">电话:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+            </tr>
+            <tr>
+                 <td style="text-align:right;"> 联系人2:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align:right;">职务:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align:right;">电话:</td>
+                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+            </tr>
+        </table>           
         </form>
     </div>
     <div id="dlg-buttons">
@@ -111,7 +179,7 @@
         var url;
 
         $(function () {
-            $('#dg').datagrid({
+            $('#tbCus').datagrid({
                 title: '客户管理列表',
                 iconCls: 'icon-edit', //图标  
                 width: 700,
@@ -152,26 +220,12 @@
                     }
                 }]
             });
-
-            //设置分页控件  
-            var p = $('#dg').datagrid("getPager");
-            $(p).pagination({
-                pageSize: 10, //每页显示的记录条数，默认为10  
-                pageList: [5, 10, 15], //可以设置每页记录条数的列表  
-                beforePageText: '第', //页数文本框前显示的汉字  
-                afterPageText: '页    共 {pages} 页',
-                displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
-                /*onBeforeRefresh:function(){ 
-                $(this).pagination('loading'); 
-                alert('before refresh'); 
-                $(this).pagination('loaded'); 
-                }*/
-                onSelectPage: function () { alert(pageNumber + '/' + pageSize) },
-                onChangePageSize: function () { alert(pageSize) }
-            });
         });
 
-       
+        function checkUser(Id) {
+            alert("查看" + Id);
+        }
+
 
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', '新增客户');
@@ -179,9 +233,9 @@
             url = 'save_user.php';
         }
         function editUser() {
-            var row = $('#dg').datagrid('getSelected');
+            var row = $('#tbCus').datagrid('getSelected');
             if (row) {
-                $('#dlg').dialog('open').dialog('setTitle', 'Edit User');
+                $('#dlg').dialog('open').dialog('setTitle', '编辑客户');
                 $('#fm').form('load', row);
                 url = 'update_user.php?id=' + row.id;
             }
@@ -201,19 +255,19 @@
                         });
                     } else {
                         $('#dlg').dialog('close');        // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
+                        $('#tbCus').datagrid('reload');    // reload the user data
                     }
                 }
             });
         }
         function destroyUser() {
-            var row = $('#dg').datagrid('getSelected');
+            var row = $('#tbCus').datagrid('getSelected');
             if (row) {
                 $.messager.confirm('Confirm', 'Are you sure you want to destroy this user?', function (r) {
                     if (r) {
                         $.post('destroy_user.php', { id: row.id }, function (result) {
                             if (result.success) {
-                                $('#dg').datagrid('reload');    // reload the user data
+                                $('#tbCus').datagrid('reload');    // reload the user data
                             } else {
                                 $.messager.show({    // show error message
                                     title: 'Error',
