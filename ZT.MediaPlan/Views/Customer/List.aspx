@@ -10,6 +10,8 @@
     <link rel="Stylesheet" type="text/css" href="../../Scripts/easyui/themes/ztsty.css" />
     <script type="text/javascript" src="../../Scripts/easyui/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="../../Scripts/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/page/customer.js"></script>
+    <script type="text/javascript" src="../../Scripts/common.js"></script>
     <style type="text/css">
         #fm
         {
@@ -31,16 +33,16 @@
         .fitem label
         {
             display: inline-block;
-            width: 70px;            
-            text-align:right;
-            margin-left:15px;
-        }        
+            width: 70px;
+            text-align: right;
+            margin-left: 15px;
+        }
     </style>
 </head>
 <body>
     <table id="tbCus" class="easyui-datagrid">
         <thead>
-            <tr>               
+            <tr>
                 <th field="CustomerNo" width="75">
                     客户编号
                 </th>
@@ -74,100 +76,171 @@
             </tr>
         </thead>
     </table>
-    
     <!--新增、编辑框-->
     <div id="dlg" class="easyui-dialog" style="width: 780px; height: 580px; padding: 10px 15px"
         closed="true" buttons="#dlg-buttons">
         <div class="ftitle">
             客户基本信息</div>
-        <form id="fm" method="post" novalidate>           
+        <form id="fm" method="post" novalidate>
         <table cellpadding="5">
             <tr>
-                <td style="text-align:right;">客户编号:</td>
-                <td  colspan="2"> <input name="firstname" class="easyui-validatebox input-w7" required="true" /></td>
-                <td style="text-align:right;">建档日期:</td>
-                <td  colspan="2"><input class="easyui-datebox textbox input-w7" /></td>
-            </tr>
-            <tr>
-                <td style="text-align:right;">客户全称:</td>
-                <td  colspan="2"><input name="lastname" class="easyui-validatebox input-w7" required="true" /></td>
-                <td style="text-align:right;">客户简称:</td>
-                <td  colspan="2"><input name="lastname" class="easyui-validatebox input-w7" required="true" /></td>
-            </tr>
-            <tr>
-                <td style="text-align:right;">客户类别:</td>
-                <td  colspan="2">
-                    <select class="easyui-combobox input-w7" name="language">
-                <option value="ar">类别1</option>
-                <option value="bg">类别2</option>
-                <option value="ca">类别3</option>
-                <option value="zh-cht">类别4</option>
-            </select>
+                <td style="text-align: right;">
+                    客户编号:
                 </td>
-                <td style="text-align:right;">经办人员:</td>
-                <td  colspan="2"><input name="phone" class="input-w7" /></td>
-            </tr>
-            <tr>
-                <td style="text-align:right;">公司地址:</td>
-                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
-                <td style="text-align:right;">电话:</td>
-                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
-            </tr>
-            <tr>
-                <td style="text-align:right;">开户银行:</td>
-                <td  colspan="2"><select class="easyui-combobox input-w7" name="fapiao">
-                <option value="ar">中国银行</option>
-                <option value="bg">招商银行</option>
-                <option value="ca">中信银行</option>
-                <option value="zh-cht">建设银行</option>
-            </select></td>
-                <td style="text-align:right;">发票类型:</td>
-                <td  colspan="2">
-                     <select class="easyui-combobox input-w7" name="fapiao">
-                <option value="ar">类型1</option>
-                <option value="bg">类型2</option>
-                <option value="ca">类型3</option>
-                <option value="zh-cht">类型4</option>
-            </select>
+                <td colspan="2">
+                    <input name="CustomerNo" class="easyui-validatebox input-w7" data-options="required:true,min:10,max:100,editable:false" />
+                </td>
+                <td style="text-align: right;">
+                    建档日期:
+                </td>
+                <td colspan="2">
+                    <input name="CreateTime" class="easyui-datebox textbox input-w7" />
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;"> 营业执照码:</td>
-                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email">    </td>
-                <td style="text-align:right;"> 帐号:</td>
-                <td  colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+                <td style="text-align: right;">
+                    客户全称:
+                </td>
+                <td colspan="2">
+                    <input name="FullName" class="easyui-validatebox input-w7" required="true" />
+                </td>
+                <td style="text-align: right;">
+                    客户简称:
+                </td>
+                <td colspan="2">
+                    <input name="ShortName" class="easyui-validatebox input-w7" required="true" />
+                </td>
             </tr>
             <tr>
-                <td style="text-align:right;">电话:</td>
-                <td colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
-                <td style="text-align:right;">地址:</td>
-                <td colspan="2"><input name="email" class="easyui-validatebox input-w7" validtype="email"></td>
+                <td style="text-align: right;">
+                    客户类别:
+                </td>
+                <td colspan="2">
+                    <select id="CustomerType" name="CustomerType" class="easyui-combobox input-w7">
+                    </select>
+                </td>
+                <td style="text-align: right;">
+                    经办人员:
+                </td>
+                <td colspan="2">
+                    <input name="Creator" class="input-w7" />
+                </td>
             </tr>
             <tr>
-                <td style="text-align:right;">开票全称:</td>
-                <td colspan="5"> <input name="email" class="easyui-validatebox input-w12" validtype="email"></td>                
+                <td style="text-align: right;">
+                    公司地址:
+                </td>
+                <td colspan="2">
+                    <input name="CompanyAddress" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    电话:
+                </td>
+                <td colspan="2">
+                    <input name="CompanyTel" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
             </tr>
             <tr>
-                <td style="text-align:right;">税务登记:</td>
-                <td colspan="5"><input name="email" class="easyui-validatebox input-w12" validtype="email"></td>                
+                <td style="text-align: right;">
+                    营业执照码:
+                </td>
+                <td colspan="2">
+                    <input name="BusinessLicNo" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    发票类型:
+                </td>
+                <td colspan="2">
+                    <select id="ReceiptType" name="ReceiptType" class="easyui-combobox input-w7">
+                    </select>
+                </td>
             </tr>
             <tr>
-                <td style="text-align:right;"> 联系人1:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
-                <td style="text-align:right;">职务:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
-                <td style="text-align:right;">电话:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align: right;">
+                    开户银行:
+                </td>
+                <td colspan="2">
+                    <select id="OpenBank" name="OpenBank" class="easyui-combobox input-w7">
+                    </select>
+                </td>
+                <td style="text-align: right;">
+                    帐号:
+                </td>
+                <td colspan="2">
+                    <input name="AccountNo" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
             </tr>
             <tr>
-                 <td style="text-align:right;"> 联系人2:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
-                <td style="text-align:right;">职务:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
-                <td style="text-align:right;">电话:</td>
-                <td><input name="email" class="easyui-validatebox input-w5" validtype="email"></td>
+                <td style="text-align: right;">
+                    电话:
+                </td>
+                <td colspan="2">
+                    <input name="BankTel" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    地址:
+                </td>
+                <td colspan="2">
+                    <input name="BankAddress" class="easyui-validatebox input-w7" validtype="email" />
+                </td>
             </tr>
-        </table>           
+            <tr>
+                <td style="text-align: right;">
+                    开票全称:
+                </td>
+                <td colspan="5">
+                    <input name="BRFullName" class="easyui-validatebox input-w12" validtype="email" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    税务登记号:
+                </td>
+                <td colspan="5">
+                    <input name="TaxNo" class="easyui-validatebox input-w12" validtype="email" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    联系人1:
+                </td>
+                <td>
+                    <input name="Contacter_A" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    职务:
+                </td>
+                <td>
+                    <input name="Position_A" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    电话:
+                </td>
+                <td>
+                    <input name="Tel_A" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    联系人2:
+                </td>
+                <td>
+                    <input name="Contacter_B" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    职务:
+                </td>
+                <td>
+                    <input name="Position_B" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+                <td style="text-align: right;">
+                    电话:
+                </td>
+                <td>
+                    <input name="Tel_B" class="easyui-validatebox input-w5" validtype="email" />
+                </td>
+            </tr>
+        </table>
         </form>
     </div>
     <div id="dlg-buttons">
@@ -204,6 +277,7 @@
                     text: '新增客户',
                     iconCls: 'icon-add',
                     handler: function () {
+                        initCustomerData();
                         newUser();
                     }
                 }, '-', {
@@ -221,6 +295,33 @@
                 }]
             });
         });
+
+        //初始化数据
+        function initCustomerData() {
+            //客户类型
+            $('#customerType').combobox({
+                url: '../../Config/customer_type.json',
+                valueField: 'id',
+                textField: 'value',
+                method: 'get'
+            });
+
+            //开户银行
+            $('#openBank').combobox({
+                url: '../../Config/bank.json',
+                valueField: 'id',
+                textField: 'value',
+                method: 'get'
+            });
+
+            //开票类型
+            $('#receiptType').combobox({
+                url: '../../Config/receipt_type.json',
+                valueField: 'id',
+                textField: 'value',
+                method: 'get'
+            });
+        }
 
         function checkUser(Id) {
             alert("查看" + Id);
@@ -242,7 +343,7 @@
         }
         function saveUser() {
             $('#fm').form('submit', {
-                url: url,
+                url: '/Customer/CreateUser',
                 onSubmit: function () {
                     return $(this).form('validate');
                 },

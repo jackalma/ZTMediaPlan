@@ -15,7 +15,7 @@ namespace ZT.MediaPlan.Common
         /// <summary>
         /// 缓存导航配置信息
         /// </summary>
-        public const string CACHE_NAVIGATION = "CACHE_NAVIGATION";
+        public const string CACHE_NAVIGATION = "CACHE_NAVIGATION";    
 
     }
 }

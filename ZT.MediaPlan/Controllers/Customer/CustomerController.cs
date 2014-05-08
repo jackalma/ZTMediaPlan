@@ -69,8 +69,7 @@ namespace ZT.MediaPlan.Controllers.Customer
                         select new {u.Id, u.CustomerNo, u.CustomerName, u.CustomerType, u.CreateTime, u.ReceiptType, u.Creator, u.BusinessLicNo, u.Bank, u.Status }
                        ).Skip((page - 1) * rows)
                        .Take(rows);
-            
-                        
+                                    
             //var result = new { total = listCustomer.Count(), rows = data };
             //return Json(result, JsonRequestBehavior.AllowGet);
 
@@ -92,9 +91,15 @@ namespace ZT.MediaPlan.Controllers.Customer
                 })
             }, JsonRequestBehavior.AllowGet);
 
-            return a;
+            return a;            
+        }
+
+        public void CreateUser()
+        { 
             
         }
+        
+
 
 
         private int GetPageIndex()

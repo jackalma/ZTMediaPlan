@@ -83,6 +83,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logics\CustomerLogic.cs" />
     <Compile Include="Logics\Navigation.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\NavNodeInfo.cs" />
@@ -92,8 +93,10 @@
     <Content Include="App_Data\xml\HeadNavigation.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Config\receipt_type.json" />
     <Content Include="Content\master.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\easyui\demo\demo.css" />
     <Content Include="Scripts\easyui\jquery-1.6.min.js" />
     <Content Include="Scripts\easyui\jquery.easyui.min.js" />
@@ -402,6 +405,7 @@
     <Content Include="Scripts\liger\ligerUI\skins\Tab\images\win\dialog-winbtns.gif" />
     <Content Include="Scripts\liger\ligerUI\skins\Tab\images\win\dialogbtn.gif" />
     <Content Include="Scripts\liger\ligerUI\skins\Tab\images\win\dialogicon.gif" />
+    <Content Include="Scripts\page\customer.js" />
     <Content Include="Views\Actions\List.aspx" />
     <Content Include="Views\Customer\Create.aspx" />
     <Content Include="Views\Customer\List.aspx" />
@@ -471,6 +475,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="aaabbb.php" />
+    <None Include="Config\bank.json" />
+    <None Include="Config\customer_type.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
