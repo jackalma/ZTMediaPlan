@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Navigation>
-  <Menu Text="客户管理" Src="Customer/List" ActionName="菜单_客户管理" TabId="cus" Status="true">
-    <Node Text="新增客户" Src="Customer/Create" ActionName="菜单_新增客户" TabId="cuscreate" Status="true"></Node>
+  <Menu Text="客户管理" Src="Customer/List" ActionName="菜单_客户管理" TabId="cus" Status="true">   
     <Node Text="客户管理" Src="Customer/List" ActionName="菜单_客户管理" TabId="cusmanage" Status="true"></Node>
+  </Menu>
+  <Menu Text="合同管理" Src="Contract/List" ActionName="菜单_合同管理" TabId="con" Status="true">
+    <Node Text="广告合同" Src="Contract/Advert" ActionName="菜单_广告合同管理" TabId="conadvert" Status="true"></Node>
+    <Node Text="购买合同" Src="Contract/Buy" ActionName="菜单_购买合同管理" TabId="conbuy" Status="true"></Node>
   </Menu>
   <Menu Text="销售" Src="" ActionName="" TabId="" Status="true">    
     <Node Text="我的客户" Src="" ActionName="" TabId="" Status="true"></Node>
