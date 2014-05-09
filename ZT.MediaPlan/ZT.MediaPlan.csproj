@@ -48,6 +48,10 @@
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json.Net20">
       <HintPath>..\Lib\Newtonsoft.Json.Net20.dll</HintPath>
     </Reference>
@@ -83,6 +87,7 @@
     <Compile Include="Controllers\Roles\RolesController.cs" />
     <Compile Include="Controllers\System\SystemController.cs" />
     <Compile Include="Controllers\Users\UsersController.cs" />
+    <Compile Include="Daos\ZTSeqNoDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -90,6 +95,7 @@
     <Compile Include="Logics\Navigation.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\NavNodeInfo.cs" />
+    <Compile Include="Models\ZTSeqNo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
