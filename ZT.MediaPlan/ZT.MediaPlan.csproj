@@ -98,6 +98,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\easyui\demo\demo.css" />
+    <Content Include="Scripts\easyui\extendValid.js" />
     <Content Include="Scripts\easyui\jquery-1.6.min.js" />
     <Content Include="Scripts\easyui\jquery.easyui.min.js" />
     <Content Include="Scripts\easyui\themes\default\easyui.css" />

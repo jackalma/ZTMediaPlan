@@ -49,13 +49,13 @@ namespace ZT.MediaPlan.Controllers.Customer
                 CustomerInfo cusInfo = new CustomerInfo();
                 cusInfo.Id = Guid.NewGuid().ToString("N").ToUpper();
                 cusInfo.CustomerNo = string.Format("000{0}",i.ToString ());
-                cusInfo.CustomerName = string.Format("中天广告传媒{0}", i);
+                cusInfo.ShortName = string.Format("中天广告传媒{0}", i);
                 cusInfo.CustomerType = "4A";
                 cusInfo.CreateTime = DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss");
                 cusInfo.ReceiptType = "发票";
                 cusInfo.Creator = "张三";
                 cusInfo.BusinessLicNo = string.Format("N093827{0}", i);
-                cusInfo.Bank = "中国银行";
+                cusInfo.OpenBank = "中国银行";
                 cusInfo.Status = "1";
 
                 listCustomer.Add(cusInfo);
@@ -66,7 +66,7 @@ namespace ZT.MediaPlan.Controllers.Customer
 
             var data = (from u in listCustomer
                         orderby u.CreateTime
-                        select new {u.Id, u.CustomerNo, u.CustomerName, u.CustomerType, u.CreateTime, u.ReceiptType, u.Creator, u.BusinessLicNo, u.Bank, u.Status }
+                        select new {u.Id, u.CustomerNo, u.ShortName, u.CustomerType, u.CreateTime, u.ReceiptType, u.Creator, u.BusinessLicNo, u.OpenBank, u.Status }
                        ).Skip((page - 1) * rows)
                        .Take(rows);
                                     
@@ -79,13 +79,13 @@ namespace ZT.MediaPlan.Controllers.Customer
                 rows = data.Select(u => new
                 {
                     CustomerNo = u.CustomerNo,
-                    CustomerName = u.CustomerName,
+                    ShortName = u.ShortName,
                     CustomerType = u.CustomerType,
                     CreateTime = u.CreateTime,
                     ReceiptType = u.ReceiptType,
                     Creator = u.Creator,
                     BusinessLicNo = u.BusinessLicNo,
-                    Bank = u.Bank,
+                    OpenBank = u.OpenBank,
                     Status = u.Status,
                     Actions = "<a href=\"javascript:checkUser('" + u.Id + "')\">查看</a>",
                 })
@@ -94,9 +94,10 @@ namespace ZT.MediaPlan.Controllers.Customer
             return a;            
         }
 
-        public void CreateUser()
-        { 
-            
+        public JsonResult CreateUser(string ss)
+        {
+
+            return Json("adsfa");
         }
         
 
@@ -121,13 +122,13 @@ namespace ZT.MediaPlan.Controllers.Customer
         {
             public string Id { get; set; }
             public string CustomerNo { get; set; }
-            public string CustomerName { get; set; }
+            public string ShortName { get; set; }
             public string CustomerType { get; set; }
             public string CreateTime { get; set; }
             public string ReceiptType { get; set; }
             public string Creator { get; set; }
             public string BusinessLicNo { get; set; }
-            public string Bank { get; set; }
+            public string OpenBank { get; set; }
             public string Status { get; set; }
         }
 
