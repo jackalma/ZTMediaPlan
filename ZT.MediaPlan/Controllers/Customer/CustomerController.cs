@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ZT.Framework.Common;
+using Newtonsoft.Json;
 
 namespace ZT.MediaPlan.Controllers.Customer
 {
@@ -50,8 +51,8 @@ namespace ZT.MediaPlan.Controllers.Customer
                 cusInfo.Id = Guid.NewGuid().ToString("N").ToUpper();
                 cusInfo.CustomerNo = string.Format("000{0}",i.ToString ());
                 cusInfo.ShortName = string.Format("中天广告传媒{0}", i);
-                cusInfo.CustomerType = "4A";
-                cusInfo.CreateTime = DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss");
+                cusInfo.CustomerType = 4;
+                cusInfo.CreateTime = DateTime.Now;
                 cusInfo.ReceiptType = "发票";
                 cusInfo.Creator = "张三";
                 cusInfo.BusinessLicNo = string.Format("N093827{0}", i);
@@ -94,8 +95,13 @@ namespace ZT.MediaPlan.Controllers.Customer
             return a;            
         }
 
-        public JsonResult CreateUser(string ss)
+        public JsonResult CreateUser(string json)
         {
+            CustomerInfo ci = null;
+            var _json = SystemDataProvider.GetStandardJson(json.ToString());
+            ci = JsonConvert.DeserializeObject<CustomerInfo>(json);
+            
+            //mp.Json = JsonConvert.SerializeObject(mp.Model);
 
             return Json("adsfa");
         }
@@ -123,8 +129,8 @@ namespace ZT.MediaPlan.Controllers.Customer
             public string Id { get; set; }
             public string CustomerNo { get; set; }
             public string ShortName { get; set; }
-            public string CustomerType { get; set; }
-            public string CreateTime { get; set; }
+            public int CustomerType { get; set; }
+            public DateTime CreateTime { get; set; }
             public string ReceiptType { get; set; }
             public string Creator { get; set; }
             public string BusinessLicNo { get; set; }

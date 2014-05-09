@@ -11,8 +11,10 @@
     <script type="text/javascript" src="../../Scripts/easyui/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="../../Scripts/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../../Scripts/page/customer.js"></script>
-    <script type="text/javascript" src="../../Scripts/common.js"></script>
-    <script type="text/javascript" src="../../Scripts/easyui/extendValid.js"></script>
+    <script type="text/javascript" src="../../Scripts/easyui/extendValid.js"></script>     
+    <script type="text/javascript" src="../../Scripts/JsonSerialize.js" ></script>
+    <script type="text/javascript" src="../../Scripts/common.js" ></script>
+
     <style type="text/css">
         #fm
         {
@@ -92,10 +94,10 @@
                     <input id="CustomerNo"  name="CustomerNo" class="input-w7" readonly="readonly"  />
                 </td>
                 <td style="text-align: right;">
-                    建档日期:
+                    建档日期
                 </td>
                 <td colspan="2">
-                    <input name="CreateTime" class="easyui-datebox textbox input-w7" required="true" editable="false" />
+                    <input id="CreateTime" name="CreateTime" class="easyui-datebox textbox input-w7" required="true" editable="false" />
                 </td>
             </tr>
             <tr>
@@ -103,13 +105,13 @@
                     客户全称:
                 </td>
                 <td colspan="2">
-                    <input name="FullName" class="easyui-validatebox input-w7" required="true" validType="maxLength[25]"  />
+                    <input id="FullName" name="FullName" class="easyui-validatebox input-w7" required="true" validType="maxLength[25]"  />
                 </td>
                 <td style="text-align: right;">
                     客户简称:
                 </td>
                 <td colspan="2">
-                    <input name="ShortName" class="easyui-validatebox input-w7" required="true" validType="maxLength[10]" />
+                    <input id="ShortName" name="ShortName" class="easyui-validatebox input-w7" required="true" validType="maxLength[10]" />
                 </td>
             </tr>
            <tr>
@@ -124,7 +126,7 @@
                     经办人员:
                 </td>
                 <td colspan="2">
-                    <input name="Creator" class="easyui-validatebox input-w7" required="true" validType="maxLength[10]" />
+                    <input id="Creator" name="Creator" class="easyui-validatebox input-w7" required="true" validType="maxLength[10]" />
                 </td>
             </tr>
             <tr>
@@ -132,13 +134,13 @@
                     公司地址:
                 </td>
                 <td colspan="2">
-                    <input name="CompanyAddress" class="easyui-validatebox input-w7" validType="maxLength[25]" />
+                    <input id="CompanyAddress" name="CompanyAddress" class="easyui-validatebox input-w7" validType="maxLength[25]" />
                 </td>
                 <td style="text-align: right;">
                     电话:
                 </td>
                 <td colspan="2">
-                    <input name="CompanyTel" class="easyui-validatebox input-w7" validType="maxLength[20]"/>
+                    <input id="CompanyTel" name="CompanyTel" class="easyui-validatebox input-w7" validType="maxLength[20]"/>
                 </td>
             </tr>
             <tr>
@@ -146,7 +148,7 @@
                     营业执照码:
                 </td>
                 <td colspan="2">
-                    <input name="BusinessLicNo" class="easyui-validatebox input-w7" required="true" validType="maxLength[25]" />
+                    <input id="BusinessLicNo" name="BusinessLicNo" class="easyui-validatebox input-w7" required="true" validType="maxLength[25]" />
                 </td>
                 <td style="text-align: right;">
                     发票类型:
@@ -168,7 +170,7 @@
                     帐号:
                 </td>
                 <td colspan="2">
-                    <input name="AccountNo" class="easyui-validatebox input-w7" required="true" validType="number" validType="maxLength[36]"/>
+                    <input id="AccountNo" name="AccountNo" class="easyui-validatebox input-w7" required="true" validType="number" validType="maxLength[36]"/>
                 </td>
             </tr>
             <tr>
@@ -176,13 +178,13 @@
                     电话:
                 </td>
                 <td colspan="2">
-                    <input name="BankTel" class="easyui-validatebox input-w7" validType="maxLength[18]"/>
+                    <input id="BankTel" name="BankTel" class="easyui-validatebox input-w7" validType="maxLength[18]"/>
                 </td>
                 <td style="text-align: right;">
                     地址:
                 </td>
                 <td colspan="2">
-                    <input name="BankAddress" class="easyui-validatebox input-w7" validType="maxLength[30]"/>
+                    <input id="BankAddress" name="BankAddress" class="easyui-validatebox input-w7" validType="maxLength[30]"/>
                 </td>
             </tr>
             <tr>
@@ -190,7 +192,7 @@
                     开票全称:
                 </td>
                 <td colspan="5">
-                    <input name="BRFullName" class="easyui-validatebox input-w12" validType="maxLength[30]"/>
+                    <input id="BRFullName" name="BRFullName" class="easyui-validatebox input-w12" validType="maxLength[30]"/>
                 </td>
             </tr>
             <tr>
@@ -198,7 +200,7 @@
                     税务登记号:
                 </td>
                 <td colspan="5">
-                    <input name="TaxNo" class="easyui-validatebox input-w12" validType="maxLength[36]"/>
+                    <input id="TaxNo" name="TaxNo" class="easyui-validatebox input-w12" validType="maxLength[36]"/>
                 </td>
             </tr>
             <tr>
@@ -206,19 +208,19 @@
                     联系人1:
                 </td>
                 <td>
-                    <input name="Contacter_A" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
+                    <input id="Contacter_A" name="Contacter_A" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
                 </td>
                 <td style="text-align: right;">
                     职务:
                 </td>
                 <td>
-                    <input name="Position_A" class="easyui-validatebox input-w5" validType="maxLength[10]"/>
+                    <input id="Position_A" name="Position_A" class="easyui-validatebox input-w5" validType="maxLength[10]"/>
                 </td>
                 <td style="text-align: right;">
                     电话:
                 </td>
                 <td>
-                    <input name="Tel_A" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
+                    <input id="Tel_A" name="Tel_A" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
                 </td>
             </tr>
             <tr>
@@ -226,19 +228,19 @@
                     联系人2:
                 </td>
                 <td>
-                    <input name="Contacter_B" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
+                    <input id="Contacter_B" name="Contacter_B" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
                 </td>
                 <td style="text-align: right;">
                     职务:
                 </td>
                 <td>
-                    <input name="Position_B" class="easyui-validatebox input-w5" validType="maxLength[10]"/>
+                    <input id="Position_B" name="Position_B" class="easyui-validatebox input-w5" validType="maxLength[10]"/>
                 </td>
                 <td style="text-align: right;">
                     电话:
                 </td>
                 <td>
-                    <input name="Tel_B" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
+                    <input id="Tel_B" name="Tel_B" class="easyui-validatebox input-w5" validType="maxLength[20]"/>
                 </td>
             </tr>
         </table>
@@ -334,6 +336,8 @@
             $('#fm').form('clear');
             $("#CustomerNo").val(2567);
         }
+
+        //编辑数据
         function editUser() {
             var row = $('#tbCus').datagrid('getSelected');
             if (row) {
@@ -342,10 +346,14 @@
                 url = 'update_user.php?id=' + row.id;
             }
         }
+
+        //保存数据
         function saveUser() {
+            var json = GetCustomerJson();
+
             $('#fm').form('submit', {
-                url: '/Customer/CreateUser?ss=234234',                
-                onSubmit: function () {                  
+                url: '/Customer/CreateUser?json=' + String.toSerialize(json),
+                onSubmit: function () {
                     return $(this).form('validate');
                 },
                 success: function (result) {
@@ -362,6 +370,8 @@
                 }
             });
         }
+
+        //删除数据
         function destroyUser() {
             var row = $('#tbCus').datagrid('getSelected');
             if (row) {

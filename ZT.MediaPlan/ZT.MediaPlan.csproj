@@ -48,6 +48,9 @@
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>..\Lib\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers" />
     <Reference Include="System" />
@@ -150,6 +153,7 @@
     <Content Include="Scripts\easyui\themes\icons\tip.png" />
     <Content Include="Scripts\easyui\themes\icons\undo.png" />
     <Content Include="Scripts\easyui\themes\ztsty.css" />
+    <Content Include="Scripts\JsonSerialize.js" />
     <Content Include="Scripts\liger\images\loading.gif" />
     <Content Include="Scripts\liger\images\top.jpg" />
     <Content Include="Scripts\liger\images\top2.jpg" />
