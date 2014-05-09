@@ -112,6 +112,95 @@ namespace ZT.Framework.Data
             return list;
         }
 
+        /// <summary>
+        /// 查询指定条件的实体。
+        /// </summary>
+        /// <param name="where">查询条件（不含WHERE关键字，如果为空则返回所有对象）。</param>
+        /// <returns>查询到的对象的集合。</returns>
+        public EntityCollection<T> Select(string where)
+        {
+            return Select(where, string.Empty);
+        }
+
+        /// <summary>
+        /// 查询指定条件的实体。
+        /// </summary>
+        /// <param name="where">查询条件（不含WHERE关键字，如果为空则返回所有对象）。</param>
+        /// <param name="sort">排序条件（不含ORDER BY关键字，如果为空则不排序）。</param>
+        /// <returns>查询到的实体的集合。</returns>
+        public EntityCollection<T> Select(string where, string sort)
+        {
+            return SelectPage(where, sort, null);
+        }
+
+        /// <summary>
+        /// 查询指定条件的实体。
+        /// </summary>
+        /// <param name="where">查询条件（不含WHERE关键字，如果为空则返回所有对象）。</param>
+        /// <param name="sort">排序条件（不含ORDER BY关键字，如果为空则不排序）。</param>
+        /// <param name="paging">分页方案（如果为空引用，则不分页）。</param>
+        /// <returns>查询到的实体的集合。</returns>
+        public virtual EntityCollection<T> SelectPage(string where, string sort, DataAccessPaging paging)
+        {
+            DataAccess dataAccess = new DataAccess(Provider, ConnectionString);
+            DataAccessCommand cmd = new T().GetSelectCommand(dataAccess);
+            if (!string.IsNullOrEmpty(where)) cmd.Sql += Environment.NewLine + " WHERE " + where;
+            if (!string.IsNullOrEmpty(sort)) cmd.Sql += Environment.NewLine + " ORDER BY " + sort;
+
+            EntityCollection<T> list = new EntityCollection<T>();
+            using (System.Data.DataTable dt = dataAccess.ExecuteDataTable(cmd, paging))
+            {
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    T obj = new T();
+                    obj.GetData(row);
+                    list.Add(obj);
+                }
+                dt.Clear();
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 查询指定条件的第一个实体。
+        /// </summary>
+        /// <param name="where">查询条件（不含WHERE关键字）。</param>
+        /// <returns>查询到的实体的集合。</returns>
+        public T SelectFirst(string where)
+        {
+            return SelectFirst(where, string.Empty);
+        }
+
+        /// <summary>
+        /// 查询指定条件的第一个实体。
+        /// </summary>
+        /// <param name="where">查询条件（不含WHERE关键字）。</param>
+        /// <param name="sort">排序条件（不含ORDER BY关键字，如果为空则不排序）。</param>
+        /// <returns>查询到的实体的集合。</returns>
+        public virtual T SelectFirst(string where, string sort)
+        {
+            DataAccess dataAccess = new DataAccess(Provider, ConnectionString);
+            DataAccessCommand cmd = new T().GetSelectCommand(dataAccess);
+            if (!string.IsNullOrEmpty(where)) cmd.Sql += Environment.NewLine + " WHERE " + where;
+            if (!string.IsNullOrEmpty(sort)) cmd.Sql += Environment.NewLine + " ORDER BY " + sort;
+
+            cmd.ReturnCount = 1;
+
+            T obj = null;
+            using (System.Data.DataTable dt = dataAccess.ExecuteDataTable(cmd))
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    obj = new T();
+                    obj.GetData(dt.Rows[0]);
+                }
+                dt.Clear();
+            }
+
+            return obj;
+        }
+
         #endregion
     }
 }

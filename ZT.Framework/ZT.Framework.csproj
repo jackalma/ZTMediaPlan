@@ -47,8 +47,10 @@
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Common\SystemDataProvider.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="Data\DataAccessPaging.cs" />
     <Compile Include="Data\DataConvert.cs" />
     <Compile Include="Data\Entity.cs" />
+    <Compile Include="Data\EntityCollection.cs" />
     <Compile Include="Data\EntityDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

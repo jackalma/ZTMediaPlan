@@ -15,6 +15,13 @@ namespace ZT.Framework.Data
     public abstract class Entity
     {
         #region 方法
+
+        /// <summary>
+        /// 获取唯一键。
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetKey();
+
         /// <summary>
         /// 获取插入命令。
         /// </summary>

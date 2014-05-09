@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ZT.Framework.Common;
 using Newtonsoft.Json;
+using ZT.MediaPlan.Logics;
 
 namespace ZT.MediaPlan.Controllers.Customer
 {
@@ -39,6 +40,11 @@ namespace ZT.MediaPlan.Controllers.Customer
         public ActionResult List()
         {           
             return View();
+        }
+        public JsonResult GetCustomerNo()
+        {
+            int customerNo = SeqNoLogic.GetCustomerNo();
+            
         }
      
         public JsonResult CustomerList()

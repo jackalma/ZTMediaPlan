@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Logics\CustomerLogic.cs" />
     <Compile Include="Logics\Navigation.cs" />
+    <Compile Include="Logics\SeqNoLogic.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\NavNodeInfo.cs" />
     <Compile Include="Models\ZTSeqNo.cs" />
