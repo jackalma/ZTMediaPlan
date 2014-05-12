@@ -47,12 +47,13 @@
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Common\SystemDataProvider.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
-    <Compile Include="Data\DataAccessPaging.cs" />
     <Compile Include="Data\DataConvert.cs" />
     <Compile Include="Data\Entity.cs" />
-    <Compile Include="Data\EntityCollection.cs" />
     <Compile Include="Data\EntityDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

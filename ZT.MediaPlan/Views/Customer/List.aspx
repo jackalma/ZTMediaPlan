@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
+<%@ Import Namespace="ZT.MediaPlan.Logics" %>
+<%@ Import Namespace="ZT.MediaPlan.Enums" %>
+
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -91,7 +94,7 @@
                     客户编号:
                 </td>
                 <td colspan="2">
-                    <input id="CustomerNo"  name="CustomerNo" class="input-w7" readonly="readonly"  />
+                    <input id="CustomerNo"  name="CustomerNo" class="input-w7" readonly="readonly" />
                 </td>
                 <td style="text-align: right;">
                     建档日期
@@ -334,7 +337,16 @@
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', '新增客户');
             $('#fm').form('clear');
-            $("#CustomerNo").val(2567);
+
+            $.ajax({
+                url: '/Customer/GetCustomerNo',
+                type: 'get',
+                async: false,
+                dataType: "json",
+                success: function (value) {                  
+                    $("#CustomerNo").val(value.num);
+                }
+            });
         }
 
         //编辑数据

@@ -88,6 +88,7 @@
     <Compile Include="Controllers\System\SystemController.cs" />
     <Compile Include="Controllers\Users\UsersController.cs" />
     <Compile Include="Daos\ZTSeqNoDao.cs" />
+    <Compile Include="Enums\SeqNo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

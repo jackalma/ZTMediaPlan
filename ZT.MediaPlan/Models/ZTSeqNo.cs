@@ -87,7 +87,7 @@ namespace ZT.MediaPlan.Models
             DbCommand dbCommand = db.GetSqlStringCommand(sql_update);
             dbCommand.CommandType = CommandType.Text;
             db.AddInParameter(dbCommand, "@CUSTOMERNO", DbType.Int32, CustomerNo);
-            db.AddInParameter(dbCommand, "@LAST_CHANGED", DbType.Int32, Last_Changed);
+            db.AddInParameter(dbCommand, "@LAST_CHANGED", DbType.DateTime, Last_Changed);
             dbCommand.Dispose();
 
             return dbCommand;

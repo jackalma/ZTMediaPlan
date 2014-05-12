@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ZT.Framework.Common;
 using Newtonsoft.Json;
 using ZT.MediaPlan.Logics;
+using ZT.MediaPlan.Enums;
 
 namespace ZT.MediaPlan.Controllers.Customer
 {
@@ -40,13 +41,23 @@ namespace ZT.MediaPlan.Controllers.Customer
         public ActionResult List()
         {           
             return View();
-        }
+        }       
+     
+         //SeqNoLogic.GetCustomerNo(SeqNoEnum.CustomerNo);
+
         public JsonResult GetCustomerNo()
         {
-            int customerNo = SeqNoLogic.GetCustomerNo();
-            
+            var num = SeqNoLogic.GetCustomerNo(SeqNoEnum.CustomerNo);
+
+            return Json(
+                new
+                {
+                    num
+                }
+                , JsonRequestBehavior.AllowGet
+            );
         }
-     
+
         public JsonResult CustomerList()
         {           
             List<CustomerInfo> listCustomer = new List<CustomerInfo>();
