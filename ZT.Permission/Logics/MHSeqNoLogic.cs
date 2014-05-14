@@ -26,8 +26,9 @@ namespace ZT.Permission.Logics
                 
                 if (listMS.Count > 0)
                 {
-                    userId = listMS[0].UserId;
-                    snm.UserId = ++userId;
+                    snm = listMS[0];
+                    userId = snm.UserId;
+                    snm.UserId++;
                     snm.Last_Changed = DateTime.Now;
 
                     //更新编号
@@ -55,8 +56,9 @@ namespace ZT.Permission.Logics
 
                 if (listMS.Count > 0)
                 {
-                    roleId = listMS[0].RoleId;
-                    snm.RoleId = ++roleId;
+                    snm = listMS[0];
+                    roleId = snm.RoleId;
+                    snm.RoleId++;
                     snm.Last_Changed = DateTime.Now;
 
                     //更新编号
@@ -84,8 +86,9 @@ namespace ZT.Permission.Logics
 
                 if (listMS.Count > 0)
                 {
-                    actionId = listMS[0].ActionId;
-                    snm.ActionId = ++actionId;
+                    snm = listMS[0];
+                    actionId = snm.ActionId;
+                    snm.ActionId++;
                     snm.Last_Changed = DateTime.Now;
 
                     //更新编号

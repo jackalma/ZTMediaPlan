@@ -21,7 +21,7 @@ namespace ZT.Permission
             container.Add(new KeyValuePair<Type, object>(t, o));
         }
 
-        public T GetProvider<T>()
+        public static T GetProvider<T>()
         {
             return (T)container[typeof(T)];
         }

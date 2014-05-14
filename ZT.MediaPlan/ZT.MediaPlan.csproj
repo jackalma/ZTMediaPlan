@@ -104,7 +104,10 @@
     <Content Include="App_Data\xml\HeadNavigation.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Config\dept.json" />
+    <None Include="Config\jobTitle.json" />
     <None Include="Config\receipt_type.json" />
+    <None Include="Config\accountStatus.json" />
     <Content Include="Content\master.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\common.js" />
@@ -419,6 +422,7 @@
     <Content Include="Scripts\liger\ligerUI\skins\Tab\images\win\dialogbtn.gif" />
     <Content Include="Scripts\liger\ligerUI\skins\Tab\images\win\dialogicon.gif" />
     <Content Include="Scripts\page\customer.js" />
+    <Content Include="Scripts\page\mh_user.js" />
     <Content Include="Views\Actions\List.aspx" />
     <Content Include="Views\Customer\Create.aspx" />
     <Content Include="Views\Customer\List.aspx" />
@@ -484,6 +488,10 @@
     <ProjectReference Include="..\ZT.Framework\ZT.Framework.csproj">
       <Project>{D1135D5C-F2CC-448E-B7A4-89D616DA38C5}</Project>
       <Name>ZT.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZT.Permission\ZT.Permission.csproj">
+      <Project>{33365686-41B8-4AAB-88C3-7CEAD3DC1E05}</Project>
+      <Name>ZT.Permission</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

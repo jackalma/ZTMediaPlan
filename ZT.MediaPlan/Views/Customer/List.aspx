@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>List</title>
+    <title>客户管理</title>
     <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/themes/icon.css" />
     <link rel="stylesheet" type="text/css" href="../../Scripts/easyui/demo/demo.css" />
@@ -97,7 +97,7 @@
                     <input id="CustomerNo"  name="CustomerNo" class="input-w7" readonly="readonly" />
                 </td>
                 <td style="text-align: right;">
-                    建档日期
+                    建档日期:
                 </td>
                 <td colspan="2">
                     <input id="CreateTime" name="CreateTime" class="easyui-datebox textbox input-w7" required="true" editable="false" />

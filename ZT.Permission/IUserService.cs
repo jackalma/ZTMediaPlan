@@ -9,6 +9,10 @@ namespace ZT.Permission
 {
     public interface IUserService
     {
+        #region 编号
+        int GetUserId();
+        #endregion
+
         #region 查询用户
 
         List<Users> GetAllUser();
@@ -23,7 +27,7 @@ namespace ZT.Permission
 
         #region 创建用户
 
-        bool CreateUser(Users us);
+        bool CreateUser(string jsonBase, string jsonLogin);
 
         #endregion
 

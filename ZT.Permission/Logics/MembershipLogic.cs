@@ -30,10 +30,13 @@ namespace ZT.Permission.Logics
         /// </summary>
         /// <param name="ms"></param>
         /// <returns></returns>
-        public int CreateMember(Membership ms)
+        public bool CreateMember(Membership ms)
         {
             MembershipDao md = new MembershipDao();
-            return md.Insert(ms);
+            if (md.Insert(ms) > 0)
+                return true;
+
+            return false;
         }    
 
         /// <summary>

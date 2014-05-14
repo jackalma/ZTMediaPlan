@@ -201,7 +201,7 @@ namespace ZT.Permission.Enums
     }
 
     /// <summary>
-    /// 用户状态
+    /// 用户状态,配置文件accountStatus.json
     /// </summary>
     public enum AccountStatusEnum
     {
@@ -232,7 +232,7 @@ namespace ZT.Permission.Enums
     }
 
     /// <summary>
-    /// 职位
+    /// 职位，配置文件jobTitle.json
     /// </summary>
     public enum JobTitleEnum
     {
@@ -263,7 +263,7 @@ namespace ZT.Permission.Enums
     }
 
     /// <summary>
-    /// 部门
+    /// 部门，配置文件dept.json
     /// </summary>
     public enum DeptEnum
     {

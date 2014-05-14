@@ -45,6 +45,10 @@ namespace ZT.Permission.Models
         private int _status = 1;
         private int _deptId = 0;
         private int _parentId = 0;
+        private DateTime _joinDate = DateTime.MinValue;
+        private DateTime _leaveDate = DateTime.MinValue;
+        private DateTime _createDate=DateTime.MinValue;
+        private DateTime _lastChanged=DateTime .MinValue;        
         #endregion
 
         #region 属性
@@ -182,6 +186,26 @@ namespace ZT.Permission.Models
         /// 直接上级
         /// </summary>
         public int ParentId { get { return _parentId; } set { _parentId = value; } }
+
+        /// <summary>
+        /// 入职日期
+        /// </summary>
+        public DateTime JoinDate { get { return _joinDate; } set { _joinDate = value; } }
+
+        /// <summary>
+        /// 离职日期
+        /// </summary>
+        public DateTime LeaveDate { get { return _leaveDate; } set { _leaveDate = value; } }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateDate { get { return _createDate; } set { _createDate = value; } }
+
+        /// <summary>
+        /// 最后修改时间
+        /// </summary>
+        public DateTime LastChanged { get { return _lastChanged; } set { _lastChanged = value; } }
         #endregion
 
         #region SQL属性
@@ -202,8 +226,8 @@ namespace ZT.Permission.Models
             if (db == null) throw new ArgumentNullException("dataAccess");
 
             string sql_select = @"SELECT ID,UserId,UserName,EngName,Sex,Age,ICNumber,PhoneNumber,TaxNumber,Email,Birthday,Constellation,MaritalStatus,
-                                  Profession,CorporationName,JobTitle,Country,Province,City,[Address],HomePage,TotalPoints,AvailablePoints,
-                                  [Signature],[Status],DeptId,ParentId FROM mh_Users";
+                                  Profession,CorporationName,JobTitle,Country,Province,City,Address,HomePage,TotalPoints,AvailablePoints,
+                                  Signature,Status,DeptId,ParentId,JoinDate,LeaveDate,CreateDate,LastChanged FROM mh_Users";
 
             if (!string.IsNullOrEmpty(Where)) sql_select += " Where " + Where;
 
@@ -225,9 +249,9 @@ namespace ZT.Permission.Models
             if (db == null) throw new ArgumentNullException("dataAccess");
             string sql_insert = @"INSERT 
                                   INTO mh_Users(ID,UserId,UserName,EngName,Sex,Age,ICNumber,PhoneNumber,TaxNumber,Email,Birthday,Constellation,MaritalStatus,Profession,CorporationName,
-                                                JobTitle,Country,Province,City,[Address],HomePage,TotalPoints,AvailablePoints,[Signature],[Status],DeptId,ParentId)
+                                                JobTitle,Country,Province,City,Address,HomePage,TotalPoints,AvailablePoints,Signature,Status,DeptId,ParentId,JoinDate,LeaveDate,CreateDate,LastChanged)
                                   VALUES(@ID,@UserId,@UserName,@EngName,@Sex,@Age,@ICNumber,@PhoneNumber,@TaxNumber,@Email,@Birthday,@Constellation,@MaritalStatus,@Profession,@CorporationName,
-                                         @JobTitle,@Country,@Province,@City,@Address,@HomePage,@TotalPoints,@AvailablePoints,@Signature,@Status,@DeptId,@ParentId)";
+                                         @JobTitle,@Country,@Province,@City,@Address,@HomePage,@TotalPoints,@AvailablePoints,@Signature,@Status,@DeptId,@ParentId,@JoinDate,@LeaveDate,@CreateDate,@LastChanged)";
 
             DbCommand dbCommand = db.GetSqlStringCommand(sql_insert);
             dbCommand.CommandType = CommandType.Text;
@@ -258,6 +282,10 @@ namespace ZT.Permission.Models
             db.AddInParameter(dbCommand, "@Status", DbType.Int32, Status);
             db.AddInParameter(dbCommand, "@DeptId", DbType.Int32, DeptId);
             db.AddInParameter(dbCommand, "@ParentId", DbType.Int32, ParentId);
+            db.AddInParameter(dbCommand, "@JoinDate", DbType.DateTime, JoinDate);
+            db.AddInParameter(dbCommand, "@LeaveDate", DbType.DateTime, LeaveDate);
+            db.AddInParameter(dbCommand, "@CreateDate", DbType.DateTime, CreateDate);
+            db.AddInParameter(dbCommand, "@LastChanged", DbType.DateTime, LastChanged);
             dbCommand.Dispose();
 
             return dbCommand;
@@ -275,8 +303,8 @@ namespace ZT.Permission.Models
                                     UserName=@UserName,EngName=@EngName,Sex=@Sex,Age=@Age,ICNumber=@ICNumber,PhoneNumber=@PhoneNumber,TaxNumber=@TaxNumber,Email=@Email,Birthday=@Birthday,
                                     Constellation=@Constellation,MaritalStatus=@MaritalStatus,
                                     Profession=@Profession,CorporationName=@CorporationName,JobTitle=@JobTitle,Country=@Country,Province=@Province,
-                                    City=@City,[Address]=@Address,HomePage=@HomePage,TotalPoints=@TotalPoints,AvailablePoints=@AvailablePoints,
-                                    [Signature]=@Signature,[Status]=@Status,DeptId=@DeptId,ParentId=@ParentId WHERE UserId=@UserId";                                    
+                                    City=@City,Address=@Address,HomePage=@HomePage,TotalPoints=@TotalPoints,AvailablePoints=@AvailablePoints,
+                                    Signature=@Signature,Status=@Status,DeptId=@DeptId,ParentId=@ParentId,JoinDate=@JoinDate,LeaveDate=@LeaveDate,CreateDate=@CreateDate,LastChanged=@LastChanged WHERE UserId=@UserId";                                    
 
             DbCommand dbCommand = db.GetSqlStringCommand(sql_update);
             dbCommand.CommandType = CommandType.Text;
@@ -306,6 +334,10 @@ namespace ZT.Permission.Models
             db.AddInParameter(dbCommand, "@Status", DbType.Int32, Status);
             db.AddInParameter(dbCommand, "@DeptId", DbType.Int32, DeptId);
             db.AddInParameter(dbCommand, "@ParentId", DbType.Int32, ParentId);
+            db.AddInParameter(dbCommand, "@JoinDate", DbType.DateTime, JoinDate);
+            db.AddInParameter(dbCommand, "@LeaveDate", DbType.DateTime, LeaveDate);
+            db.AddInParameter(dbCommand, "@CreateDate", DbType.DateTime, CreateDate);
+            db.AddInParameter(dbCommand, "@LastChanged", DbType.DateTime, LastChanged);
             dbCommand.Dispose();
 
             return dbCommand;
@@ -353,7 +385,11 @@ namespace ZT.Permission.Models
             Signature = DataConvert.GetStringValue(row["Signature"]);
             Status = DataConvert.GetInt32Value(row["Status"]);
             DeptId = DataConvert.GetInt32Value(row["DeptId"]);
-            ParentId = DataConvert.GetInt32Value(row["ParentId"]);                                               
+            ParentId = DataConvert.GetInt32Value(row["ParentId"]);
+            JoinDate = DataConvert.GetDateTimeValue(row["JoinDate"]);
+            LeaveDate = DataConvert.GetDateTimeValue(row["LeaveDate"]);
+            CreateDate = DataConvert.GetDateTimeValue(row["CreateDate"]);
+            LastChanged = DataConvert.GetDateTimeValue(row["LastChanged"]);
         }       
 
         #endregion
