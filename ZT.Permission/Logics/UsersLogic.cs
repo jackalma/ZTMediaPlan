@@ -27,6 +27,20 @@ namespace ZT.Permission.Logics
         }
 
         /// <summary>
+        /// 获取简单的用户信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Users> GetDirectUser()
+        {
+            UsersDao ud = new UsersDao();
+            Users user = new Users();
+            user.Status = (int)AccountStatusEnum.Active;
+            DataSet ds = ud.SelectDirectUser(user);
+
+            return ConvertDirectUsers(ds);
+        }
+
+        /// <summary>
         /// 获取某个用户基本信息
         /// </summary>
         /// <param name="userId">用户编号</param>
@@ -103,6 +117,25 @@ namespace ZT.Permission.Logics
         }
 
         #region 私有方法
+
+        private List<Users> ConvertDirectUsers(DataSet ds)
+        {
+            List<Users> listUsers = new List<Users>();
+            DataTable dt = ds.Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Users us = new Users();
+                us.UserId = dt.Rows[i]["UserId"].ToString().ToInteger();
+                us.UserName = dt.Rows[i]["UserName"].ToString();
+                us.JobTitle = dt.Rows[i]["JobTitle"].ToString().ToInteger();
+                us.ParentId = dt.Rows[i]["ParentId"].ToString().ToInteger();
+
+                listUsers.Add(us);
+            }
+
+            return listUsers;
+        }
+
         private List<Users> GetListUsers(DataSet ds)
         {
             List<Users> listUsers = new List<Users>();

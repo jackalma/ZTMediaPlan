@@ -38,5 +38,20 @@ namespace ZT.Permission.Daos
         {
             return base.Delete(obj);
         }
+
+        public DataSet SelectDirectUser(Users us)
+        {
+            DbCommand selectCommand = us.SelectDirectUser(DataAccess.Db);
+
+            try
+            {
+                return DataAccess.Db.ExecuteDataSet(selectCommand);
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
+        }
     }
 }

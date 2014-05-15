@@ -66,7 +66,7 @@ namespace ZT.Permission.Models
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
 
-            string sql_select = @"SELECT ID,UserId,LoginName,LoweredLoginName,[Password],Email,LoweredEmail,PasswordQuestion,
+            string sql_select = @"SELECT ID,UserId,LoginName,LoweredLoginName,Password,Email,LoweredEmail,PasswordQuestion,
                                   PasswordAnswer,CreateDate,LastLoginDate,LastLoginIP,FailedPasswordAttemptCount
                                   FROM mh_Membership";
 
@@ -89,7 +89,7 @@ namespace ZT.Permission.Models
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
             string sql_insert = @" INSERT 
-                                   INTO mh_Membership(ID,UserId,LoginName,LoweredLoginName,[Password],Email,LoweredEmail,PasswordQuestion,
+                                   INTO mh_Membership(ID,UserId,LoginName,LoweredLoginName,Password,Email,LoweredEmail,PasswordQuestion,
                                                       PasswordAnswer,CreateDate,LastLoginDate,LastLoginIP,FailedPasswordAttemptCount)
                                    VALUES(@ID,@UserId,@LoginName,@LoweredLoginName,@Password,@Email,@LoweredEmail,@PasswordQuestion,
                                           @PasswordAnswer,@CreateDate,@LastLoginDate,@LastLoginIP,@FailedPasswordAttemptCount)";
@@ -124,7 +124,7 @@ namespace ZT.Permission.Models
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
             string sql_update = @" UPDATE mh_Membership
-                                   SET LoginName=@LoginName,LoweredLoginName=@LoweredLoginName,[Password]=@Password,Email=@Email,LoweredEmail=@LoweredEmail,PasswordQuestion=@PasswordQuestion,
+                                   SET LoginName=@LoginName,LoweredLoginName=@LoweredLoginName,Password=@Password,Email=@Email,LoweredEmail=@LoweredEmail,PasswordQuestion=@PasswordQuestion,
                                    PasswordAnswer=@PasswordAnswer,CreateDate=@CreateDate,LastLoginDate=@LastLoginDate,LastLoginIP=@LastLoginIP,FailedPasswordAttemptCount=@FailedPasswordAttemptCount WHERE UserId=@UserId";
 
             DbCommand dbCommand = db.GetSqlStringCommand(sql_update);

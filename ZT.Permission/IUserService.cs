@@ -15,6 +15,8 @@ namespace ZT.Permission
 
         #region 查询用户
 
+        List<Users> GetDirectUser();
+
         List<Users> GetAllUser();
 
         List<Users> GetAllUser(AccountStatusEnum status);

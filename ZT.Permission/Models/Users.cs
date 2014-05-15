@@ -33,7 +33,7 @@ namespace ZT.Permission.Models
         private int _maritalStatus = 0;
         private string _profession = string.Empty;
         private string _corporationName = string.Empty;
-        private string _jobTitle = string.Empty;
+        private int _jobTitle = 0;
         private string _country = string.Empty;
         private string _province = string.Empty;
         private string _city = string.Empty;
@@ -42,7 +42,7 @@ namespace ZT.Permission.Models
         private int _totalPoints = 0;
         private int _availablePoints = 0;
         private string _signature = string.Empty;
-        private int _status = 1;
+        private int _status = -2;
         private int _deptId = 0;
         private int _parentId = 0;
         private DateTime _joinDate = DateTime.MinValue;
@@ -130,7 +130,7 @@ namespace ZT.Permission.Models
         /// <summary>
         /// 职位
         /// </summary>
-        public string JobTitle { get { return _jobTitle; } set { _jobTitle = value; } }
+        public int JobTitle{ get { return _jobTitle; } set { _jobTitle = value; } }
         
         /// <summary>
         /// 国家
@@ -270,7 +270,7 @@ namespace ZT.Permission.Models
             db.AddInParameter(dbCommand, "@MaritalStatus", DbType.Int32, MaritalStatus);
             db.AddInParameter(dbCommand, "@Profession", DbType.String, Profession);
             db.AddInParameter(dbCommand, "@CorporationName", DbType.String, CorporationName);
-            db.AddInParameter(dbCommand, "@JobTitle", DbType.String, JobTitle);
+            db.AddInParameter(dbCommand, "@JobTitle", DbType.Int32, JobTitle);
             db.AddInParameter(dbCommand, "@Country", DbType.String, Country);
             db.AddInParameter(dbCommand, "@Province", DbType.String, Province);
             db.AddInParameter(dbCommand, "@City", DbType.String, City);
@@ -322,7 +322,7 @@ namespace ZT.Permission.Models
             db.AddInParameter(dbCommand, "@MaritalStatus", DbType.Int32, MaritalStatus);
             db.AddInParameter(dbCommand, "@Profession", DbType.String, Profession);
             db.AddInParameter(dbCommand, "@CorporationName", DbType.String, CorporationName);
-            db.AddInParameter(dbCommand, "@JobTitle", DbType.String, JobTitle);
+            db.AddInParameter(dbCommand, "@JobTitle", DbType.Int32, JobTitle);
             db.AddInParameter(dbCommand, "@Country", DbType.String, Country);
             db.AddInParameter(dbCommand, "@Province", DbType.String, Province);
             db.AddInParameter(dbCommand, "@City", DbType.String, City);
@@ -374,7 +374,7 @@ namespace ZT.Permission.Models
             MaritalStatus = DataConvert.GetInt32Value(row["MaritalStatus"]);
             Profession = DataConvert.GetStringValue(row["Profession"]);
             CorporationName = DataConvert.GetStringValue(row["CorporationName"]);
-            JobTitle = DataConvert.GetStringValue(row["JobTitle"]);
+            JobTitle = DataConvert.GetInt32Value(row["JobTitle"]);
             Country = DataConvert.GetStringValue(row["Country"]);
             Province = DataConvert.GetStringValue(row["Province"]);
             City = DataConvert.GetStringValue(row["City"]);
@@ -391,6 +391,30 @@ namespace ZT.Permission.Models
             CreateDate = DataConvert.GetDateTimeValue(row["CreateDate"]);
             LastChanged = DataConvert.GetDateTimeValue(row["LastChanged"]);
         }       
+
+        #endregion
+
+        #region 方法
+
+        /// <summary>
+        /// 获取简单的用户信息
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public DbCommand SelectDirectUser(Database db)
+        {
+            if (db == null) throw new ArgumentNullException("dataAccess");
+
+            string sql_insert = @"SELECT UserId,UserName,JobTitle,ParentId FROM mh_users WHERE Status = @Status";
+
+            DbCommand dbCommand = db.GetSqlStringCommand(sql_insert);
+            dbCommand.CommandType = CommandType.Text;            
+            db.AddInParameter(dbCommand, "@Status", DbType.Int32, Status);
+
+            dbCommand.Dispose();
+
+            return dbCommand;
+        }
 
         #endregion
     }

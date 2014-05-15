@@ -31,6 +31,16 @@ namespace ZT.Permission.Service
         }
 
         /// <summary>
+        /// 获取简单用户信息、编号 姓名 职位 部门
+        /// </summary>
+        /// <returns></returns>
+        public List<Users> GetDirectUser()
+        {
+            UsersLogic ul = new UsersLogic();
+            return ul.GetDirectUser();
+        }
+
+        /// <summary>
         /// 获取所有用户
         /// </summary>
         /// <returns></returns>
@@ -79,6 +89,7 @@ namespace ZT.Permission.Service
             user.ID = Guid.NewGuid().ToString("N").ToUpper();
             user.CreateDate = DateTime.Now;
             user.LastChanged = DateTime.Now;
+            user.Status = (int)AccountStatusEnum.Active;
 
             //用户登录信息
             var _jsonLogin = SystemDataProvider.GetStandardJson(jsonLogin.ToString());
@@ -90,13 +101,13 @@ namespace ZT.Permission.Service
             member.LoweredEmail = user.Email.ToLower();
             member.CreateDate = DateTime.Now;
 
-            //创建用户基本信息
-            UsersLogic uLogic = new UsersLogic();
-            var value = uLogic.CreateUser(user);
-
             //创建用户登录信息
             MembershipLogic mLogic = new MembershipLogic();
-            value = mLogic.CreateMember(member);
+            var value = mLogic.CreateMember(member);
+
+            //创建用户基本信息
+            UsersLogic uLogic = new UsersLogic();
+            value = uLogic.CreateUser(user);
 
             return value;
         }
