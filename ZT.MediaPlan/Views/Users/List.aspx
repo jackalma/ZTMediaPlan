@@ -232,8 +232,23 @@
                         直接上级:
                     </td>
                     <td colspan="2">
-                        <select id="DirectUser" name="DirectUser" class="easyui-combobox input-w7">
-                        </select>
+                       <%-- <select id="DirectUser" name="DirectUser" class="easyui-combobox input-w7">
+                        </select>--%>
+                         <select class="easyui-combogrid input-w7"  id="DirectUser" name="DirectUser" data-options="
+            panelWidth: 500,
+            idField: 'itemid',
+            textField: 'productname',
+            url: '/Users/GetDirectUser',
+            method: 'get',
+            columns: [[
+                {field:'UserId',title:'编号',width:80},
+                {field:'UserName',title:'姓名',width:120},
+                {field:'JobTitle',title:'职位',width:120},
+                {field:'ParentId',title:'部门',width:120}
+            ]],
+            fitColumns: true
+        ">
+    </select>
                     </td>
                     <td style="text-align: right;">
                         入职日期:
@@ -322,9 +337,8 @@
             initCustomerData();
         });
 
-        //初始化数据
+        //初始化加载数据
         function initCustomerData() {
-
             //初始化查询条件
             //部门
             $('#selDept').combobox({
@@ -335,16 +349,7 @@
                 onSelect: function () { 
                     
                 }
-            });
-            $("#Department").combobox({
-                url: '../../Config/dept.json',
-                valueField: 'id',
-                textField: 'value',
-                method: 'get',
-                onBeforeLoad: function (param) {             
-                     
-                }
-            });
+            });           
 
             //职位
             $('#selJob').combobox({
@@ -355,16 +360,7 @@
                 onSelect: function () { 
                     
                 }
-            });
-            $("#JobTitle").combobox({
-                url: '../../Config/jobTitle.json',
-                valueField: 'id',
-                textField: 'value',
-                method: 'get',
-                onBeforeLoad: function (param) {
-
-                }
-            });
+            });          
 
             //状态
             $('#selStatus').combobox({
@@ -375,7 +371,47 @@
                 onSelect: function () { 
                     
                 }
-            });          
+            });
+        }
+
+        //初始化创建用户数据
+        function InitCreateData() {
+            //部门
+            $("#Department").combobox({
+                url: '../../Config/dept.json',
+                valueField: 'id',
+                textField: 'value',
+                method: 'get',
+                onBeforeLoad: function (param) {
+
+                }
+            });
+
+            //职位
+            $("#JobTitle").combobox({
+                url: '../../Config/jobTitle.json',
+                valueField: 'id',
+                textField: 'value',
+                method: 'get',
+                onBeforeLoad: function (param) {
+
+                }
+            });
+
+            $("#DirectUser").select({
+                panelWidth: 500,
+                idField: 'itemid',
+                textField: 'productname',
+                url: '/Users/GetDirectUser',
+                method: 'get',
+                columns: [[
+                { field: 'UserId', title: '编号', width: 80 },
+                { field: 'UserName', title: '姓名', width: 120 },
+                { field: 'JobTitle', title: '职位', width: 120 },
+                { field: 'ParentId', title: '部门', width: 120 }
+            ]],
+                fitColumns: true
+            });
         }
 
         function checkUser(Id) {
@@ -385,7 +421,7 @@
 
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', '新增用户');
-            $('#fm').form('clear');
+            $('#fm').form('clear');            
 
             $.ajax({
                 url: '/Users/GetUserId',
@@ -397,6 +433,8 @@
                         $("#UserId").val(value.num);
                 }
             });
+
+            InitCreateData();
         }
 
         //编辑数据

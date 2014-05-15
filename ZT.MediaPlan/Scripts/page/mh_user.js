@@ -3,7 +3,7 @@
 //获取用户基本信息，以JSON的方式
 function GetUserJson() {
     var json = new Object();
-    json.UserId = $("#UserId").val();
+    json.UserId = remCommas($("#UserId").val());
     json.UserName = $("#UserName").val();
     json.EngName = $("#EngName").val();
     json.Sex = $("#Sex").combobox('getValue');
