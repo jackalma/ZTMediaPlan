@@ -69,33 +69,15 @@ namespace ZT.MediaPlan.Controllers.Users
         public JsonResult UserList()
         {
             IUserService us = UserEngine.GetProvider<IUserService>();
-            us.GetAllUser(Permission.Enums.AccountStatusEnum.Active);
-    
-            List<CustomerInfo> listCustomer = new List<CustomerInfo>();
+            List<Permission.Models.UsersList> listUsers = us.GetUsersList("", "", "");
 
-            for (int i = 1; i < 280; i++)
-            {
-                CustomerInfo cusInfo = new CustomerInfo();
-                cusInfo.Id = Guid.NewGuid().ToString("N").ToUpper();
-                cusInfo.CustomerNo = string.Format("000{0}", i.ToString());
-                cusInfo.ShortName = string.Format("中天广告传媒{0}", i);
-                cusInfo.CustomerType = 4;
-                cusInfo.CreateTime = DateTime.Now;
-                cusInfo.ReceiptType = "发票";
-                cusInfo.Creator = "张三";
-                cusInfo.BusinessLicNo = string.Format("N093827{0}", i);
-                cusInfo.OpenBank = "中国银行";
-                cusInfo.Status = "1";
-
-                listCustomer.Add(cusInfo);
-            }
 
             var page = GetPageIndex();
             var rows = GetPageSize();
 
-            var data = (from u in listCustomer
-                        orderby u.CreateTime
-                        select new { u.Id, u.CustomerNo, u.ShortName, u.CustomerType, u.CreateTime, u.ReceiptType, u.Creator, u.BusinessLicNo, u.OpenBank, u.Status }
+            var data = (from u in listUsers
+                        orderby u.JoinDate
+                        select new { u.ID, u.UserId, u.LoginName, u.UserName, u.EngName, u.DeptId, u.JobTitle, u.ParentId, u.JoinDate, u.LeaveDate, u.Status }
                        ).Skip((page - 1) * rows)
                        .Take(rows);
 
@@ -104,19 +86,20 @@ namespace ZT.MediaPlan.Controllers.Users
 
             var a = Json(new
             {
-                total = listCustomer.Count(),
+                total = listUsers.Count(),
                 rows = data.Select(u => new
                 {
-                    CustomerNo = u.CustomerNo,
-                    ShortName = u.ShortName,
-                    CustomerType = u.CustomerType,
-                    CreateTime = u.CreateTime,
-                    ReceiptType = u.ReceiptType,
-                    Creator = u.Creator,
-                    BusinessLicNo = u.BusinessLicNo,
-                    OpenBank = u.OpenBank,
-                    Status = u.Status,
-                    Actions = "<a href=\"javascript:checkUser('" + u.Id + "')\">查看</a>",
+                    UserId = u.UserId,
+                    LoginName = u.LoginName,
+                    UserName = u.UserName,
+                    EngName = u.EngName,
+                    Department = EnumManage.Dept(u.DeptId),
+                    JobTitle = EnumManage.JobTitle(u.JobTitle),
+                    DirectUser = u.ParentId,
+                    JoinDate = u.JoinDate,
+                    LeaveDate = u.LeaveDate,
+                    Status = EnumManage.AccountStatus(u.Status),
+                    Actions = "<a href=\"javascript:checkUser('" + u.ID + "')\">查看</a>",
                 })
             }, JsonRequestBehavior.AllowGet);
 

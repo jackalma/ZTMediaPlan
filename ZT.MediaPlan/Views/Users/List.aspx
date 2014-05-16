@@ -131,8 +131,7 @@
                         中文名:
                     </td>
                     <td colspan="2">
-                        <input id="UserName" name="UserName" class="easyui-validatebox input-w7" required="true"
-                            validtype="maxLength[25]" />
+                        <input id="UserName" name="UserName" class="easyui-validatebox input-w7" required="true" validType="maxLength[25]" />
                     </td>
                     <td style="text-align: right;">
                         英文名:
@@ -155,8 +154,7 @@
                         年龄:
                     </td>
                     <td colspan="2">
-                        <input id="Age" name="Age" class="easyui-validatebox input-w7" validType="number"
-                            validType="maxLength[10]" />
+                        <input id="Age" name="Age" class="easyui-validatebox input-w7" validType="number" maxlength="10" />
                     </td>
                 </tr>
                 <tr>
@@ -164,7 +162,7 @@
                         手机号:
                     </td>
                     <td colspan="2">
-                        <input id="PhoneNumber" name="PhoneNumber" class="easyui-validatebox input-w7" validType="number" validType="maxLength[15]" />
+                        <input id="PhoneNumber" name="PhoneNumber" class="easyui-validatebox input-w7" validType="number" maxlength="15" />
                     </td>
                     <td style="text-align: right;">
                         出生日期:
@@ -178,8 +176,7 @@
                         身份证号:
                     </td>
                     <td colspan="2">
-                        <input id="ICNumber" name="ICNumber" class="easyui-validatebox input-w7" validType="number"
-                            validType="maxLength[20]" />
+                        <input id="ICNumber" name="ICNumber" class="easyui-validatebox input-w7" validType="number" maxlength="25" />
                     </td>
                     <td style="text-align: right;">
                         家庭住址:
@@ -216,8 +213,7 @@
                         邮箱:
                     </td>
                     <td colspan="2">
-                        <input id="Email" name="Email" class="easyui-validatebox input-w7" required="true"
-                            validType="maxLength[25]" />
+                        <input id="Email" name="Email" class="easyui-validatebox input-w7" required="true" validType="email" maxlength="25" />
                     </td>
                     <td style="text-align: right;">
                         座机号:
@@ -231,7 +227,7 @@
                         直接上级:
                     </td>
                     <td colspan="2">                     
-                        <input id="DirectUser" name="DirectUser" class="easyui-validatebox input-w7" required="true" />
+                        <input id="DirectUser" name="DirectUser" class="input-w7" required="true" />
                     </td>
                     <td style="text-align: right;">
                         入职日期:
@@ -253,13 +249,13 @@
                         用户名:
                     </td>
                     <td colspan="2">
-                        <input id="LoginName" name="LoginName" class="easyui-validatebox input-w7" required="true" validType="maxLength[15]"  />
+                        <input id="LoginName" name="LoginName" class="easyui-validatebox input-w7" required="true" validType="vName" maxlength="15" />
                     </td>
                     <td style="text-align: right;">
                         初始密码:
                     </td>
                     <td colspan="2">
-                        <input id="Password" name="Password" class="easyui-validatebox input-w7" required="true" validType="maxLength[15]" />
+                        <input id="Password" name="Password" class="easyui-validatebox input-w7" required="true" validType="safepass" maxlength="15" />
                     </td>
                 </tr>                                                                                                                                        
             </table>

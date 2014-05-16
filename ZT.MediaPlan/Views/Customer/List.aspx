@@ -173,7 +173,7 @@
                     帐号:
                 </td>
                 <td colspan="2">
-                    <input id="AccountNo" name="AccountNo" class="easyui-validatebox input-w7" required="true" validType="number" validType="maxLength[36]"/>
+                    <input id="AccountNo" name="AccountNo" class="easyui-validatebox input-w7" required="true" validType="number" maxlength="36" />
                 </td>
             </tr>
             <tr>

@@ -25,11 +25,11 @@ $.extend($.fn.validatebox.defaults.rules, {
         },
         message: '手机号码不正确'
     },
-    loginName: {
+    vName: {
         validator: function (value, param) {
             return /^[\u0391-\uFFE5\w]+$/.test(value);
         },
-        message: '登录名称只允许汉字、英文字母、数字及下划线。'
+        message: '登录名称只允许汉字、英文字母、数字及下划线'
     },
     safepass: {
         validator: function (value, param) {
