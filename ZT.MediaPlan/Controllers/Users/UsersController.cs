@@ -48,8 +48,14 @@ namespace ZT.MediaPlan.Controllers.Users
         {
             IUserService us = UserEngine.GetProvider<IUserService>();
             List<ZT.Permission.Models.Users> listUser = us.GetDirectUser();
-
-            return Newtonsoft.Json.JsonConvert.SerializeObject(listUser);
+           
+            return Newtonsoft.Json.JsonConvert.SerializeObject(listUser.Select(u => new
+            {
+                UserId = u.UserId,
+                UserName = u.UserName,
+                Position = EnumManage.JobTitle(u.JobTitle),
+                Department = EnumManage.Dept(u.DeptId)
+            }));
         }
 
         public JsonResult UserList()

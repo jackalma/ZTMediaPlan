@@ -231,24 +231,8 @@
                     <td style="text-align: right;">
                         直接上级:
                     </td>
-                    <td colspan="2">
-                       <%-- <select id="DirectUser" name="DirectUser" class="easyui-combobox input-w7">
-                        </select>--%>
-                         <select class="easyui-combogrid input-w7"  id="DirectUser" name="DirectUser" data-options="
-            panelWidth: 500,
-            idField: 'itemid',
-            textField: 'productname',
-            url: '/Users/GetDirectUser',
-            method: 'get',
-            columns: [[
-                {field:'UserId',title:'编号',width:80},
-                {field:'UserName',title:'姓名',width:120},
-                {field:'JobTitle',title:'职位',width:120},
-                {field:'ParentId',title:'部门',width:120}
-            ]],
-            fitColumns: true
-        ">
-    </select>
+                    <td colspan="2">                     
+                        <input id="DirectUser" name="DirectUser" class="easyui-validatebox input-w7" required="true" />
                     </td>
                     <td style="text-align: right;">
                         入职日期:
@@ -398,20 +382,21 @@
                 }
             });
 
-            $("#DirectUser").select({
+            //直接上级
+            $('#DirectUser').combogrid({
                 panelWidth: 500,
-                idField: 'itemid',
-                textField: 'productname',
                 url: '/Users/GetDirectUser',
-                method: 'get',
+                idField: 'UserId',
+                textField: 'UserName',
+                mode: 'remote',
+                fitColumns: true,
                 columns: [[
-                { field: 'UserId', title: '编号', width: 80 },
-                { field: 'UserName', title: '姓名', width: 120 },
-                { field: 'JobTitle', title: '职位', width: 120 },
-                { field: 'ParentId', title: '部门', width: 120 }
-            ]],
-                fitColumns: true
-            });
+                    { field: 'UserId', title: '编号', width: 60 },
+                    { field: 'UserName', title: '姓名', width: 80 },
+                    { field: 'Position', title: '职位', align: 'right', width: 60 },
+                    { field: 'Department', title: '部门', align: 'right', width: 60 }                  
+                ]]
+            });          
         }
 
         function checkUser(Id) {

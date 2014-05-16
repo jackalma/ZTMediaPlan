@@ -1,13 +1,15 @@
- [{    
-    "id":-2,    
-    "value":"ÒÑËø¶¨"    
-},{    
-    "id":-1,    
-    "value":"ÒÑ×¢Ïú"    
+ï»¿/*å¯¹åº”Permission/Enums/MHEnum.cs AccountStatusEnum*/
+[{    
+    "id":100,    
+    "value":"ä¸é™" ,
+	"selected":true	   
 },{    
     "id":1,    
-    "value":"Õı³£"    
+    "value":"æ­£å¸¸"    
 },{    
     "id":2,    
-    "value":"ÀëÖ°"    
-}] 
+    "value":"ç¦»èŒ"
+},{
+	"id":-2,
+	"value":"å·²é”å®š"
+}]

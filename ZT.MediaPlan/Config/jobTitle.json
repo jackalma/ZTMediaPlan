@@ -1,4 +1,5 @@
-﻿[{    
+﻿/*对应Perssion/Enums/MHEnum.cs JobTitleEnum*/
+[{    
     "id":100,    
     "value":"不限" ,
 	"selected":true	   

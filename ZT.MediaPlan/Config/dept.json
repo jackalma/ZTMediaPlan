@@ -1,4 +1,5 @@
-﻿[{    
+﻿/*对应Permission/Enums/MHEnum.cs DeptEnum*/
+[{    
     "id":100,    
     "value":"不限" ,
 	"selected":true	   
