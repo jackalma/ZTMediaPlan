@@ -21,6 +21,8 @@ namespace ZT.Permission
 
         List<Users> GetAllUser(AccountStatusEnum status);
 
+        List<UsersList> GetUsersList(string deptId, string jobTitle, string status);
+
         Users GetUserInfo(int userId);
 
         List<Users> GetUserByUserName(string userName);

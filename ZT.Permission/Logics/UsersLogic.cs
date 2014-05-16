@@ -12,6 +12,40 @@ namespace ZT.Permission.Logics
     /// </summary>
     public class UsersLogic
     {
+
+        /// <summary>
+        /// 查询用户列表，三个条件 部门、职位、状态
+        /// </summary>
+        /// <returns></returns>
+        public List<UsersList> GetUserList(string deptId, string jobTitle, string status)
+        {
+            UsersList ul = new UsersList();
+            UsersListDao uld = new UsersListDao();
+            ul.Status = string.IsNullOrEmpty(status) ? (int)AccountStatusEnum.Active : status.ToInteger();
+
+            var tag = false;
+            if (!string.IsNullOrEmpty(deptId)) 
+            {
+                ul.Where += string.Format("u.DeptId = {0} ", deptId.ToInteger());
+                tag = true;
+            }
+            if (!string.IsNullOrEmpty(jobTitle))
+            {
+                if (tag)
+                {
+                    ul.Where += string.Format("AND u.JobTitle = {0}", jobTitle.ToInteger());
+                }
+                else
+                {
+                    ul.Where += string.Format("u.JobTitle = {0}", jobTitle.ToInteger());
+                }
+            }            
+
+            DataSet ds = uld.SelectUsersList(ul);
+
+            return ConvertUsersList(ds);
+        }
+
         /// <summary>
         /// 获取所有用户信息
         /// </summary>
@@ -128,12 +162,37 @@ namespace ZT.Permission.Logics
                 us.UserId = dt.Rows[i]["UserId"].ToString().ToInteger();
                 us.UserName = dt.Rows[i]["UserName"].ToString();
                 us.JobTitle = dt.Rows[i]["JobTitle"].ToString().ToInteger();
-                us.ParentId = dt.Rows[i]["ParentId"].ToString().ToInteger();
+                us.DeptId = dt.Rows[i]["DeptId"].ToString().ToInteger();
 
                 listUsers.Add(us);
             }
 
             return listUsers;
+        }
+
+        public List<UsersList> ConvertUsersList(DataSet ds)
+        {
+            List<UsersList> ul = new List<UsersList>();
+            DataTable dt = ds.Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                UsersList us = new UsersList();
+                us.ID = dt.Rows[i]["ID"].ToString();
+                us.UserId = dt.Rows[i]["UserId"].ToString().ToInteger();
+                us.UserName = dt.Rows[i]["UserName"].ToString();
+                us.EngName = dt.Rows[i]["EngName"].ToString();
+                us.LoginName = dt.Rows[i]["LoginName"].ToString();
+                us.JobTitle = dt.Rows[i]["JobTitle"].ToString().ToInteger();
+                us.DeptId = dt.Rows[i]["DeptId"].ToString().ToInteger();
+                us.ParentId = dt.Rows[i]["ParentId"].ToString().ToInteger();
+                us.JoinDate = dt.Rows[i]["JoinDate"].ToString().ToDateTime();
+                us.LeaveDate = dt.Rows[i]["LeaveDate"].ToString().ToDateTime();
+                us.Status = dt.Rows[i]["Status"].ToString().ToInteger();
+
+                ul.Add(us);
+            }
+
+            return ul;
         }
 
         private List<Users> GetListUsers(DataSet ds)

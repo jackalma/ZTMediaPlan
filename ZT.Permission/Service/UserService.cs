@@ -37,8 +37,23 @@ namespace ZT.Permission.Service
         public List<Users> GetDirectUser()
         {
             UsersLogic ul = new UsersLogic();
-            List<Users> listUser = ul.GetDirectUser();                                        
-            return ul.GetDirectUser();
+            List<Users> listUser = ul.GetDirectUser();
+            return listUser;
+        }
+
+        /// <summary>
+        /// 查询用户列表，三个条件 部门、职位、状态
+        /// </summary>
+        /// <param name="deptId"></param>
+        /// <param name="jobTitle"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public List<UsersList> GetUsersList(string deptId, string jobTitle, string status)
+        {
+            UsersLogic ul = new UsersLogic();
+            List<UsersList> listUser = ul.GetUserList(deptId, jobTitle, status);
+
+            return listUser;
         }
 
         /// <summary>

@@ -54,6 +54,7 @@
     <Compile Include="Daos\RolesDao.cs" />
     <Compile Include="Daos\UPermisDao.cs" />
     <Compile Include="Daos\UsersDao.cs" />
+    <Compile Include="Daos\UsersListDao.cs" />
     <Compile Include="Enums\MemberEnum.cs" />
     <Compile Include="Enums\MHEnum.cs" />
     <Compile Include="ILoginService.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UPermis.cs" />
     <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UsersList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Service\PermissionService.cs" />

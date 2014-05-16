@@ -405,9 +405,9 @@ namespace ZT.Permission.Models
         {
             if (db == null) throw new ArgumentNullException("dataAccess");
 
-            string sql_insert = @"SELECT UserId,UserName,JobTitle,ParentId FROM mh_users WHERE Status = @Status";
+            string sql_select = @"SELECT UserId,UserName,JobTitle,DeptId FROM mh_users WHERE Status = @Status";
 
-            DbCommand dbCommand = db.GetSqlStringCommand(sql_insert);
+            DbCommand dbCommand = db.GetSqlStringCommand(sql_select);
             dbCommand.CommandType = CommandType.Text;            
             db.AddInParameter(dbCommand, "@Status", DbType.Int32, Status);
 
