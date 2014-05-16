@@ -37,6 +37,7 @@ namespace ZT.Permission.Service
         public List<Users> GetDirectUser()
         {
             UsersLogic ul = new UsersLogic();
+            List<Users> listUser = ul.GetDirectUser();                                        
             return ul.GetDirectUser();
         }
 
