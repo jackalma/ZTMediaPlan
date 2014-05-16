@@ -1,8 +1,8 @@
-﻿/*对应Permission/Enums/MHEnum.cs AccountStatusEnum*/
-[{    
+﻿[{    
     "id":100,    
     "value":"不限" ,
-	"selected":true	   
+	"selected":true,
+	"comment":"对应Permission/Enums/MHEnum.cs AccountStatusEnum"
 },{    
     "id":1,    
     "value":"正常"    

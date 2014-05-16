@@ -29,5 +29,15 @@ namespace ZT.MediaPlan.Enums
         {
             return ZT.Permission.Enums.MHEnum.MapJobTitle(num);
         }
+
+        /// <summary>
+        /// 用户状态
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string AccountStatus(int num)
+        {
+            return ZT.Permission.Enums.MHEnum.MapAccountStatus(num);
+        }
     }
 }

@@ -44,6 +44,10 @@ namespace ZT.MediaPlan.Controllers.Users
             );
         }
 
+        /// <summary>
+        /// 获取简单用户数据，用于选择直接上级
+        /// </summary>
+        /// <returns></returns>
         public string GetDirectUser()
         {
             IUserService us = UserEngine.GetProvider<IUserService>();
@@ -58,6 +62,10 @@ namespace ZT.MediaPlan.Controllers.Users
             }));
         }
 
+        /// <summary>
+        /// 用户列表
+        /// </summary>
+        /// <returns></returns>
         public JsonResult UserList()
         {
             IUserService us = UserEngine.GetProvider<IUserService>();
