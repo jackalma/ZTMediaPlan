@@ -173,6 +173,8 @@ namespace ZT.Permission.Logics
         public List<UsersList> ConvertUsersList(DataSet ds)
         {
             List<UsersList> ul = new List<UsersList>();
+            if (ds == null || ds.Tables.Count == 0) return ul;
+
             DataTable dt = ds.Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -182,9 +184,11 @@ namespace ZT.Permission.Logics
                 us.UserName = dt.Rows[i]["UserName"].ToString();
                 us.EngName = dt.Rows[i]["EngName"].ToString();
                 us.LoginName = dt.Rows[i]["LoginName"].ToString();
+                us.Sex = dt.Rows[i]["Sex"].ToString().ToInteger();
                 us.JobTitle = dt.Rows[i]["JobTitle"].ToString().ToInteger();
                 us.DeptId = dt.Rows[i]["DeptId"].ToString().ToInteger();
                 us.ParentId = dt.Rows[i]["ParentId"].ToString().ToInteger();
+                us.ParentName = dt.Rows[i]["ParentName"].ToString();
                 us.JoinDate = dt.Rows[i]["JoinDate"].ToString().ToDateTime();
                 us.LeaveDate = dt.Rows[i]["LeaveDate"].ToString().ToDateTime();
                 us.Status = dt.Rows[i]["Status"].ToString().ToInteger();
@@ -198,8 +202,9 @@ namespace ZT.Permission.Logics
         private List<Users> GetListUsers(DataSet ds)
         {
             List<Users> listUsers = new List<Users>();
-            DataTable dt = ds.Tables[0];
-            
+            if (ds == null || ds.Tables.Count == 0) return listUsers;
+
+            DataTable dt = ds.Tables[0];            
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Users us = new Users();

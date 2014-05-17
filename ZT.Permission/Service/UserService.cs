@@ -83,7 +83,9 @@ namespace ZT.Permission.Service
 
         public Users GetUserInfo(int userId)
         {
-            return null;
+            UsersLogic ul = new UsersLogic();
+
+            return ul.GetUserInfo(userId);
         }
 
         public List<Users> GetUserByUserName(string userName)

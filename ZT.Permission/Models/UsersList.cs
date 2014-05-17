@@ -23,10 +23,12 @@ namespace ZT.Permission.Models
         private string _userName = string.Empty;
         private string _engName = string.Empty;
         private string _loginName = string.Empty;
+        private int _sex = 0;
         private int _jobTitle = 0;
         private int _status = -2;
         private int _deptId = 0;
         private int _parentId = 0;
+        private string _parentName = string.Empty;
         private DateTime _joinDate = DateTime.MinValue;
         private DateTime _leaveDate = DateTime.MinValue;
         #endregion
@@ -58,6 +60,11 @@ namespace ZT.Permission.Models
         public string LoginName { get { return _loginName; } set { _loginName = value; } }
 
         /// <summary>
+        /// 性别
+        /// </summary>
+        public int Sex { get { return _sex; } set { _sex = value; } }
+
+        /// <summary>
         /// 部门编号
         /// </summary>
         public int DeptId { get { return _deptId; } set { _deptId = value; } }
@@ -68,9 +75,14 @@ namespace ZT.Permission.Models
         public int JobTitle { get { return _jobTitle; } set { _jobTitle = value; } }
 
         /// <summary>
-        /// 直接上级
+        /// 直接上级编号
         /// </summary>
         public int ParentId { get { return _parentId; } set { _parentId = value; } }
+
+        /// <summary>
+        /// 直接上级姓名
+        /// </summary>
+        public string ParentName { get { return _parentName; } set { _parentName = value; } }
 
         /// <summary>
         /// 入职日期
@@ -134,13 +146,15 @@ namespace ZT.Permission.Models
             if (db == null) throw new ArgumentNullException("dataAccess");
 
             string sql_select = @"SELECT u.ID,u.UserId,
-m.LoginName,u.UserName,u.EngName,u.DeptId,u.JobTitle,u.ParentId,u.JoinDate,u.LeaveDate,u.Status 
+m.LoginName,u.UserName,u.EngName,u.Sex,u.DeptId,u.JobTitle,u.ParentId,
+(select u2.UserName from mh_users u2 where u2.UserId = u.ParentId) ParentName,
+u.JoinDate,u.LeaveDate,u.Status 
 FROM mh_users u
 INNER JOIN mh_membership m
 ON u.UserId=m.UserId
 WHERE u.Status = @Status";
 
-            if (!string.IsNullOrEmpty(Where)) sql_select += " AND ";
+            if (!string.IsNullOrEmpty(Where)) sql_select += string.Format(" AND {0}", Where);
 
             DbCommand dbCommand = db.GetSqlStringCommand(sql_select);
             dbCommand.CommandType = CommandType.Text;
