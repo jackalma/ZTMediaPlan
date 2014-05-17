@@ -66,10 +66,15 @@ namespace ZT.MediaPlan.Controllers.Users
         /// 用户列表
         /// </summary>
         /// <returns></returns>
-        public JsonResult UserList()
+        public JsonResult UserList(string deptId,string jobTitle,string status)
         {
+            
             IUserService us = UserEngine.GetProvider<IUserService>();
-            List<Permission.Models.UsersList> listUsers = us.GetUsersList("", "", "");
+            if (deptId == "100") deptId = "";
+            if (jobTitle == "100") jobTitle = "";
+            if (status == "100") status = "";
+
+            List<Permission.Models.UsersList> listUsers = us.GetUsersList(deptId, jobTitle, status);
 
 
             var page = GetPageIndex();
@@ -77,7 +82,7 @@ namespace ZT.MediaPlan.Controllers.Users
 
             var data = (from u in listUsers
                         orderby u.JoinDate
-                        select new { u.ID, u.UserId, u.LoginName, u.UserName, u.EngName, u.DeptId, u.JobTitle, u.ParentId, u.JoinDate, u.LeaveDate, u.Status }
+                        select new { u.ID, u.UserId, u.LoginName, u.UserName, u.EngName, u.Sex, u.DeptId, u.JobTitle, u.ParentName, u.JoinDate, u.LeaveDate, u.Status }
                        ).Skip((page - 1) * rows)
                        .Take(rows);
 
@@ -93,9 +98,10 @@ namespace ZT.MediaPlan.Controllers.Users
                     LoginName = u.LoginName,
                     UserName = u.UserName,
                     EngName = u.EngName,
+                    Sex = EnumManage.Sex(u.Sex),
                     Department = EnumManage.Dept(u.DeptId),
                     JobTitle = EnumManage.JobTitle(u.JobTitle),
-                    DirectUser = u.ParentId,
+                    DirectUser = u.ParentName,
                     JoinDate = u.JoinDate,
                     LeaveDate = u.LeaveDate,
                     Status = EnumManage.AccountStatus(u.Status),
@@ -115,12 +121,40 @@ namespace ZT.MediaPlan.Controllers.Users
         public JsonResult CreateUser(string jsonBase, string jsonLogin)
         {           
             IUserService us = UserEngine.GetProvider<IUserService>();
+            
             var value = us.CreateUser(jsonBase, jsonLogin);
 
             return Json(new { value });
         }
 
+        public string GetUser(string userId)
+        {
+            IUserService us = UserEngine.GetProvider<IUserService>();
 
+            var value = us.GetUserInfo(userId.ToInteger());
+
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                UserId = value.UserId,
+                UserName = value.UserName,
+                EngName = value.EngName,
+                Sex = value.Sex,
+                Age = value.Age,
+                PhoneNumber = value.PhoneNumber,
+                Birthday = value.Birthday,
+                ICNumber = value.ICNumber,
+                Address = value.Address,
+                JobTitle = value.JobTitle,
+                Department = value.DeptId,
+                Email = value.Email,
+                TaxNumber = value.TaxNumber,
+                DirectUser = value.ParentId,
+                JoinDate = value.JoinDate,
+                LoginName = "",
+                Password = ""
+            });
+        }
 
 
         private int GetPageIndex()

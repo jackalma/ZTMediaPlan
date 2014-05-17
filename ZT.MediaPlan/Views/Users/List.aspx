@@ -84,6 +84,9 @@
                 <th field="EngName" width="180">
                     英文名
                 </th>
+                <th field="Sex" width="65">
+                    性别
+                </th>
                 <th field="Department" width="90">
                     部门
                 </th>
@@ -271,6 +274,12 @@
         var url;
 
         $(function () {
+            InitUsersList();
+            InitCustomerData();
+        });
+
+        //初始化用户列表
+        function InitUsersList() {
             $('#tbCus').datagrid({
                 title: '用户管理列表',
                 iconCls: 'icon-edit', //图标  
@@ -295,13 +304,14 @@
                 toolbar: [{
                     text: '新增用户',
                     iconCls: 'icon-add',
-                    handler: function () {                    
+                    handler: function () {
                         newUser();
                     }
                 }, '-', {
                     text: '编辑用户',
                     iconCls: 'icon-edit',
                     handler: function () {
+                        InitCreateData();
                         editUser();
                     }
                 }, '-', {
@@ -312,12 +322,10 @@
                     }
                 }]
             });
-
-            initCustomerData();
-        });
+        }
 
         //初始化加载数据
-        function initCustomerData() {
+        function InitCustomerData() {
             //初始化查询条件
             //部门
             $('#selDept').combobox({
@@ -325,8 +333,8 @@
                 valueField: 'id',
                 textField: 'value',
                 method: 'get',
-                onSelect: function () { 
-                    
+                onSelect: function () {
+                    ReloadDG();
                 }
             });           
 
@@ -336,8 +344,8 @@
                 valueField: 'id',
                 textField: 'value',
                 method: 'get',
-                onSelect: function () { 
-                    
+                onSelect: function () {
+                    ReloadDG();
                 }
             });          
 
@@ -347,10 +355,20 @@
                 valueField: 'id',
                 textField: 'value',
                 method: 'get',
-                onSelect: function () { 
-                    
+                onSelect: function () {
+                    ReloadDG();
                 }
             });
+        }
+
+        //重新加载DataGrid
+        function ReloadDG() {
+            var queryParams = $('#tbCus').datagrid('options').queryParams;
+            queryParams.deptId = $("#selDept").combobox('getValue');
+            queryParams.jobTitle = $("#selJob").combobox('getValue');
+            queryParams.status = $("#selStatus").combobox('getValue');
+            //重新加载datagrid的数据  
+            $("#tbCus").datagrid('reload');
         }
 
         //初始化创建用户数据
@@ -398,7 +416,7 @@
             alert("查看" + Id);
         }
 
-
+        //新增用户
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', '新增用户');
             $('#fm').form('clear');            
@@ -417,17 +435,16 @@
             InitCreateData();
         }
 
-        //编辑数据
+        //编辑用户
         function editUser() {
             var row = $('#tbCus').datagrid('getSelected');
             if (row) {
-                $('#dlg').dialog('open').dialog('setTitle', '编辑客户');
-                $('#fm').form('load', row);
-                url = 'update_user.php?id=' + row.id;
+                $('#dlg').dialog('open').dialog('setTitle', '编辑用户');              
+                $('#fm').form('load', '/Users/GetUser?userId=' + row.UserId);
             }
         }
 
-        //保存数据
+        //保存用户
         function saveUser() {
             var jsonBase = GetUserJson();
             var jsonLogin = GetMemberJson();

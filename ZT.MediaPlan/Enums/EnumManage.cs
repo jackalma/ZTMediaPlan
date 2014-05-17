@@ -39,5 +39,15 @@ namespace ZT.MediaPlan.Enums
         {
             return ZT.Permission.Enums.MHEnum.MapAccountStatus(num);
         }
+        
+        /// <summary>
+        /// 性别
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string Sex(int num)
+        {
+            return ZT.Permission.Enums.MHEnum.MapSexEnum(num);
+        }
     }
 }
